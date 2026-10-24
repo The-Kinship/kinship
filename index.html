@@ -14,17 +14,23 @@
     --muted: #a3a9b8;
     --gold: #d4a94f;
     --gold-soft: #f0d58a;
-    --violet: #8b5cf6;
-    --ember: #e8602c;
+    --purple: #8b5cf6;
+    --silver: #c4cad6;
+    --green: #4f9d5d;
+    --red: #d9472b;
+    --sects: linear-gradient(90deg, var(--purple), var(--silver), var(--green), var(--red));
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
     background:
-      radial-gradient(1200px 600px at 50% -10%, rgba(139,92,246,.10), transparent 60%),
-      radial-gradient(900px 500px at 100% 0%, rgba(232,96,44,.06), transparent 60%),
+      radial-gradient(900px 520px at 0% 0%, rgba(139,92,246,.13), transparent 62%),
+      radial-gradient(900px 520px at 100% 0%, rgba(217,71,43,.10), transparent 62%),
+      radial-gradient(900px 600px at 0% 100%, rgba(79,157,93,.10), transparent 62%),
+      radial-gradient(900px 600px at 100% 100%, rgba(196,202,214,.06), transparent 62%),
       var(--bg);
+    background-repeat: no-repeat;
     color: var(--text);
     font-family: Georgia, "Times New Roman", serif;
     line-height: 1.65;
@@ -48,16 +54,18 @@
     color: var(--muted); font-size: clamp(1rem, 1.8vw, 1.25rem);
   }
   .logo {
-    width: clamp(150px, 24vw, 230px); aspect-ratio: 1;
+    width: clamp(170px, 28vw, 280px); aspect-ratio: 1;
     -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
             mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
   }
-  .logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .logo img { width: 100%; height: 100%; object-fit: contain; display: block; mix-blend-mode: lighten; }
+
+  .sect-rule { height: 3px; border-radius: 3px; background: var(--sects); opacity: .85; margin: 6px auto 0; max-width: 760px; }
 
   /* ---------- Stats bar ---------- */
   .stats {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    margin: 14px auto 18px; max-width: 760px;
+    margin: 16px auto 18px; max-width: 760px;
     border: 1px solid var(--edge); border-radius: 999px;
     background: var(--panel); overflow: hidden;
   }
@@ -107,7 +115,9 @@
   .news {
     max-width: 800px; margin: 0 auto 28px;
     border: 1px solid var(--edge); border-radius: 10px; background: var(--panel);
-    padding: 14px 20px;
+    padding: 14px 20px; border-left: 3px solid var(--purple);
+    border-image: linear-gradient(180deg, var(--purple), var(--silver), var(--green), var(--red)) 1;
+    border-image-width: 0 0 0 3px;
   }
   .news h3 {
     margin: 0 0 6px; font-size: .75rem; letter-spacing: .22em;
@@ -123,6 +133,9 @@
     background: var(--panel);
     transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
+  .card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; z-index: 2; background: var(--gold); }
+  #cardSects::before { background: var(--sects); }
+  #cardJoin::before { background: linear-gradient(90deg, var(--gold), var(--red)); }
   .card .pic { aspect-ratio: 1; overflow: hidden; background: #0d1016; }
   .card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
   .card .cap { padding: 12px 14px 16px; text-align: center; border-top: 1px solid var(--edge); }
@@ -174,9 +187,11 @@
   <!-- Name | Logo | Tagline -->
   <header class="masthead">
     <h1 id="name">The Kinship</h1>
-    <div class="logo"><img id="logo" src="images/kinship-logo.jpg" alt="The Kinship crest"></div>
+    <div class="logo"><img id="logo" src="images/kinship-crest.jpg" alt="The Kinship crest" onerror="this.onerror=null;this.src=DEFAULT_LOGO"></div>
     <p class="tagline" id="tagline"></p>
   </header>
+
+  <div class="sect-rule" aria-hidden="true"></div>
 
   <!-- Data center | World | Members -->
   <div class="stats">
@@ -204,7 +219,7 @@
   <nav class="cards" aria-label="Explore">
     <a class="card soon" id="cardKin" href="#" aria-disabled="true">
       <span class="badge">Coming soon</span>
-      <span class="pic"><img src="images/kin-button.jpg" alt=""></span>
+      <span class="pic"><img src="images/kin-emblem.jpg" alt=""></span>
       <span class="cap"><b>The Kin</b><span>Meet the faction</span></span>
     </a>
     <a class="card soon" id="cardSects" href="#" aria-disabled="true">
@@ -229,6 +244,8 @@
 // ---- Your published Google Sheet links ----
 const FACTION_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAGpMH_xMZvl3V_Pxo-e57S1D9Q2RhjpGxtN2romaYZer0CjAI3qlYzgZa4SUpNZsIbX0Dt3ag6-Jg/pub?gid=0&single=true&output=csv";
 const PLOTS_URL   = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAGpMH_xMZvl3V_Pxo-e57S1D9Q2RhjpGxtN2romaYZer0CjAI3qlYzgZa4SUpNZsIbX0Dt3ag6-Jg/pub?gid=1197750534&single=true&output=csv";
+
+const DEFAULT_LOGO = "images/kinship-crest.jpg";
 
 // ---- Pages for the two cards (fill these in as we build the pages) ----
 // Leave "" and the card shows "Coming soon". Example: kin: "kin.html"
@@ -291,7 +308,11 @@ async function main() {
     $("members").textContent = d.member_count || "-";
 
     const logo = safeImg(d.logo_url);
-    if (logo) $("logo").src = logo;          // otherwise keeps the built-in crest
+    if (logo) {                              // a custom logo link; if it is broken, fall back to the built-in crest
+      const probe = new Image();
+      probe.onload = () => { $("logo").src = logo; };
+      probe.src = logo;
+    }
 
     if (d.announcements) { $("news").textContent = d.announcements; $("newsBox").hidden = false; }
 
