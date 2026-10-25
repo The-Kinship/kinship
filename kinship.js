@@ -3,8 +3,8 @@
   "use strict";
 
   // ---- Paste the published link of your "SectContent" tab here (CSV format). ----
-  // While this is empty, the pages show built-in SAMPLE content so you can see the layout.
-  const SECT_URL = "";
+  // (If this is ever empty, the pages fall back to built-in SAMPLE content.)
+  const SECT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAGpMH_xMZvl3V_Pxo-e57S1D9Q2RhjpGxtN2romaYZer0CjAI3qlYzgZa4SUpNZsIbX0Dt3ag6-Jg/pub?gid=1603698241&single=true&output=csv";
 
   // ---- The four sects (plus the hidden crypt). Passwords are stored as hashes, not plain text. ----
   const SECTS = {
