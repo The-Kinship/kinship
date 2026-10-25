@@ -24,10 +24,46 @@
 
   <main class="scards" id="cards"></main>
 
-  <p class="foot-note">Not in a sect yet? <a href="explore.html">Learn what each one does</a>, then reach out or apply. Any Kin can ask to join a sect.</p>
+  <section class="apply" aria-labelledby="applyHead">
+    <h2 id="applyHead">Not in a sect yet?</h2>
+    <p>Chosen your path? Send in your sect application.</p>
+    <a class="apply-btn off" id="sectApply" href="#" aria-disabled="true">Apply to a sect</a>
+    <p class="apply-note" id="sectApplyNote">The sect application opens soon. Ask a member of the Ember Court in the meantime.</p>
+  </section>
+
+  <p class="foot-note">Still deciding? <a href="explore.html">Learn what each one does</a>. Any Kin can ask to join a sect.</p>
 </div>
 
 <script src="kinship.js"></script>
+<script>
+// Apply button: the link lives in the Google Sheet (Faction tab, row sect_application_url; falls back to application_url).
+(function () {
+  const FACTION_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAGpMH_xMZvl3V_Pxo-e57S1D9Q2RhjpGxtN2romaYZer0CjAI3qlYzgZa4SUpNZsIbX0Dt3ag6-Jg/pub?gid=0&single=true&output=csv";
+  function parseCSV(text) {
+    const rows = []; let row = [], cell = "", q = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) { if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; } else if (c === '"') q = false; else cell += c; }
+      else if (c === '"') q = true;
+      else if (c === ",") { row.push(cell); cell = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+      else cell += c;
+    }
+    if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+    return rows.filter(r => r.some(x => x.trim() !== ""));
+  }
+  fetch(FACTION_URL).then(r => { if (!r.ok) throw 0; return r.text(); }).then(t => {
+    const d = {};
+    parseCSV(t).slice(1).forEach(r => { d[(r[0] || "").trim().toLowerCase()] = (r[1] || "").trim(); });
+    const url = /^https?:\/\//i.test(d.sect_application_url || "") ? d.sect_application_url : (/^https?:\/\//i.test(d.application_url || "") ? d.application_url : "");
+    if (!url) return;
+    const a = document.getElementById("sectApply");
+    a.href = url; a.target = "_blank"; a.rel = "noopener";
+    a.classList.remove("off"); a.removeAttribute("aria-disabled");
+    document.getElementById("sectApplyNote").hidden = true;
+  }).catch(() => {});
+})();
+</script>
 <script>
 (function () {
   const K = window.Kinship;

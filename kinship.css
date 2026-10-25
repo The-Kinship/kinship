@@ -207,3 +207,12 @@ ol.rules .rx { display: block; color: var(--muted); white-space: pre-line; }
   html { scroll-behavior: auto; }
   * { transition: none !important; animation: none !important; }
 }
+
+/* Apply to a sect */
+.apply { max-width: 640px; margin: 40px auto 0; text-align: center; }
+.apply h2 { font-size: 1.3rem; margin: 0 0 6px; color: var(--gold-soft); }
+.apply p { color: var(--muted); margin: 0 0 16px; }
+.apply-btn { display: inline-block; padding: 12px 28px; border-radius: 999px; background: var(--gold); color: #1a1408; font-weight: 600; text-decoration: none; letter-spacing: .03em; }
+.apply-btn:hover, .apply-btn:focus-visible { background: var(--gold-soft); box-shadow: 0 0 22px rgba(212,169,79,.4); }
+.apply-btn.off { opacity: .55; pointer-events: none; }
+.apply-note { margin: 14px 0 0; font-size: .9rem; }
