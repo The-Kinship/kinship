@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About The Kinship</title>
+<meta name="description" content="The Kinship is a heavy role-play free company on Crystal / Mateus. Learn how we're organized, what our four sects do, and how to join.">
+<style>
+  :root {
+    --bg: #11141b;
+    --panel: #181c26;
+    --edge: #2c3242;
+    --text: #e9e6dc;
+    --muted: #a3a9b8;
+    --gold: #d4a94f;
+    --gold-soft: #f0d58a;
+    --purple: #8b5cf6;
+    --silver: #c4cad6;
+    --steel: #8fa6cf;
+    --green: #4f9d5d;
+    --red: #d9472b;
+    --sects: linear-gradient(90deg, var(--purple), var(--silver), var(--green), var(--red));
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(900px 520px at 0% 0%, rgba(139,92,246,.13), transparent 62%),
+      radial-gradient(900px 520px at 100% 0%, rgba(217,71,43,.10), transparent 62%),
+      radial-gradient(900px 600px at 0% 100%, rgba(79,157,93,.10), transparent 62%),
+      radial-gradient(900px 600px at 100% 100%, rgba(196,202,214,.06), transparent 62%),
+      var(--bg);
+    background-repeat: no-repeat;
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 22px 20px 48px; }
+
+  /* ---------- Top bar ---------- */
+  .back {
+    display: inline-block; text-decoration: none; color: var(--gold-soft);
+    font-size: .9rem; letter-spacing: .06em; padding: 6px 14px;
+    border: 1px solid var(--edge); border-radius: 999px; background: var(--panel);
+  }
+  .back:hover, .back:focus-visible { border-color: var(--gold); box-shadow: 0 0 16px rgba(212,169,79,.25); }
+
+  /* ---------- Hero ---------- */
+  .hero { text-align: center; padding: 10px 0 6px; }
+  .hero .emblem {
+    width: clamp(140px, 22vw, 210px); aspect-ratio: 1; margin: 0 auto 6px;
+    -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+            mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+  }
+  .hero .emblem img { width: 100%; height: 100%; display: block; object-fit: contain; mix-blend-mode: lighten; }
+  .hero h1 {
+    margin: 0; font-weight: normal; letter-spacing: .05em;
+    font-size: clamp(1.9rem, 4.6vw, 3rem); color: var(--gold-soft);
+    text-shadow: 0 2px 18px rgba(212,169,79,.28);
+  }
+  .hero .sub { margin: 4px 0 0; color: var(--muted); font-style: italic; font-size: 1.05rem; }
+  .sect-rule { height: 3px; border-radius: 3px; background: var(--sects); opacity: .85; margin: 18px auto 0; max-width: 760px; }
+
+  /* ---------- Jump links ---------- */
+  .jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 6px; }
+  .jump a {
+    text-decoration: none; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--muted); padding: 6px 14px; border: 1px solid var(--edge); border-radius: 999px; background: var(--panel);
+  }
+  .jump a:hover, .jump a:focus-visible { color: var(--gold-soft); border-color: var(--gold); }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 44px; }
+  .eyebrow { margin: 0; text-align: center; font-size: .78rem; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); }
+  h2 {
+    margin: 4px 0 18px; text-align: center; font-weight: normal;
+    font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--gold-soft);
+  }
+  .lead { max-width: 760px; margin: 0 auto 14px; text-align: center; color: var(--text); font-size: 1.12rem; }
+  .lead.muted { color: var(--muted); font-size: 1.02rem; }
+
+  /* ---------- What we offer ---------- */
+  .offer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+  .tile {
+    border: 1px solid var(--edge); border-radius: 14px; background: var(--panel);
+    padding: 22px 20px 20px; position: relative; overflow: hidden;
+  }
+  .tile::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--gold); }
+  .tile:nth-child(2)::before { background: linear-gradient(90deg, var(--gold), var(--purple)); }
+  .tile:nth-child(3)::before { background: linear-gradient(90deg, var(--gold), var(--green)); }
+  .tile h3 { margin: 0 0 6px; font-weight: normal; font-size: 1.2rem; color: var(--gold-soft); }
+  .tile p { margin: 0; color: var(--muted); }
+
+  /* ---------- Structure ladder ---------- */
+  .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px; }
+  .rung {
+    border: 1px solid var(--edge); border-radius: 14px; background: var(--panel);
+    padding: 18px 16px; text-align: center;
+  }
+  .rung .step { font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+  .rung h3 { margin: 4px 0 2px; font-weight: normal; font-size: 1.3rem; color: var(--gold-soft); }
+  .rung .role { margin: 0; color: var(--text); font-style: italic; }
+  .rung .desc { margin: 8px 0 0; color: var(--muted); font-size: .95rem; }
+  .rung.top {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(212,169,79,.12), rgba(24,28,38,.95) 70%), var(--panel);
+    box-shadow: 0 0 24px rgba(212,169,79,.18);
+  }
+
+  /* ---------- Sects ---------- */
+  .sects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 24px; }
+  .sect {
+    --c: var(--gold);
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+    border: 1px solid var(--edge); border-radius: 16px; background: var(--panel);
+    padding: 22px 22px 20px;
+  }
+  .sect::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); }
+  .sect::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(420px 220px at 0% 0%, color-mix(in srgb, var(--c) 16%, transparent), transparent 70%);
+  }
+  .sect > * { position: relative; z-index: 1; }
+  .sect.onyx { --c: var(--purple); }
+  .sect.vanguard { --c: var(--steel); }
+  .sect.lifewatch { --c: var(--green); }
+  .sect.ember { --c: var(--red); }
+  .sect .head { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .sect .head img {
+    width: 104px; height: 104px; flex: 0 0 104px; object-fit: contain; border-radius: 50%;
+    filter: drop-shadow(0 4px 14px color-mix(in srgb, var(--c) 45%, transparent));
+  }
+  .sect h3 { margin: 0; font-weight: normal; font-size: 1.45rem; color: var(--gold-soft); line-height: 1.2; }
+  .sect .leader { margin: 4px 0 0; font-size: .92rem; color: var(--muted); }
+  .sect .leader b { font-weight: normal; color: var(--c); letter-spacing: .04em; }
+  .sect p.body { margin: 0 0 10px; color: var(--text); }
+  .sect .for { margin: 0 0 8px; font-size: .95rem; color: var(--muted); }
+  .sect .for b, .sect .eg b {
+    display: block; font-weight: normal; font-size: .68rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--c); margin-bottom: 2px;
+  }
+  .sect .quiet { margin: 0 0 10px; font-size: .92rem; font-style: italic; color: var(--muted); }
+  .sect .eg { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--edge); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .chip {
+    font-size: .82rem; color: var(--text); padding: 2px 11px; border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--c) 55%, var(--edge));
+    background: color-mix(in srgb, var(--c) 10%, transparent);
+  }
+  .closing { max-width: 760px; margin: 26px auto 0; text-align: center; color: var(--muted); font-size: 1.05rem; }
+
+  /* ---------- Example plot ---------- */
+  .plotfig { margin: 22px auto 0; max-width: 980px; }
+  .plotbtn {
+    display: block; width: 100%; padding: 0; cursor: zoom-in; background: none; color: inherit;
+    border: 1px solid var(--gold); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(212,169,79,.2), 0 0 30px rgba(212,169,79,.18);
+  }
+  .plotbtn img { width: 100%; height: auto; display: block; }
+  .plotbtn:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
+  .plotfig figcaption { text-align: center; margin-top: 8px; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  dialog.lightbox {
+    padding: 0; border: 1px solid var(--gold); border-radius: 12px; background: #0b0d12;
+    max-width: 96vw; max-height: 94vh; overflow: auto;
+  }
+  dialog.lightbox::backdrop { background: rgba(5,6,9,.88); }
+  dialog.lightbox img { display: block; width: min(1432px, 96vw); height: auto; cursor: zoom-out; }
+
+  /* ---------- Join CTA ---------- */
+  .cta {
+    margin-top: 48px; text-align: center; padding: 30px 22px 28px; border-radius: 18px;
+    background: linear-gradient(180deg, rgba(212,169,79,.10), rgba(24,28,38,.95) 45%), var(--panel);
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 0 1px rgba(212,169,79,.25), 0 0 38px rgba(212,169,79,.20);
+  }
+  .cta h2 { margin-bottom: 6px; }
+  .cta p { max-width: 560px; margin: 0 auto 18px; color: var(--muted); }
+  .btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .btn {
+    display: inline-block; text-decoration: none; padding: 12px 28px; border-radius: 999px;
+    border: 1px solid var(--gold); color: var(--gold-soft); font-size: 1.02rem; letter-spacing: .05em;
+    background: rgba(212,169,79,.08); transition: background .2s, color .2s, box-shadow .2s;
+  }
+  .btn.primary { background: var(--gold); color: #1a1408; }
+  .btn:hover, .btn:focus-visible { box-shadow: 0 0 22px rgba(212,169,79,.4); }
+  .btn.primary:hover { background: var(--gold-soft); }
+  .btn.off { opacity: .55; pointer-events: none; }
+  .tiny { margin: 14px 0 0; font-size: .85rem; color: var(--muted); }
+
+  footer { text-align: center; padding-top: 28px; }
+  [hidden] { display: none !important; }
+
+  /* ---------- Narrower screens ---------- */
+  @media (max-width: 900px) {
+    .sects { grid-template-columns: 1fr; }
+    .ladder { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .offer { grid-template-columns: 1fr; }
+    .ladder { grid-template-columns: 1fr; }
+    .sect .head img { width: 84px; height: 84px; flex-basis: 84px; }
+    section { margin-top: 38px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">&larr; Back to home</a>
+
+  <!-- ===== Hero ===== -->
+  <header class="hero">
+    <div class="emblem"><img src="images/kin-emblem.jpg" alt="The Kinship emblem"></div>
+    <h1>About The Kinship</h1>
+    <p class="sub">A heavy role-play free company on Crystal &middot; Mateus</p>
+    <div class="sect-rule" aria-hidden="true"></div>
+    <nav class="jump" aria-label="On this page">
+      <a href="#about">Who we are</a>
+      <a href="#offer">What we offer</a>
+      <a href="#structure">How we're led</a>
+      <a href="#sects">The sects</a>
+      <a href="#plot">Example plot</a>
+      <a href="#join">Join us</a>
+    </nav>
+  </header>
+
+  <!-- ===== Who we are ===== -->
+  <section id="about">
+    <p class="eyebrow">Who we are</p>
+    <h2>Quality RP over quantity</h2>
+    <p class="lead">The Kinship is a heavy RP free company that focuses on giving its members an in-depth, immersive, and inclusive RP environment to thrive in. We value quality RP over quantity of members.</p>
+    <p class="lead muted">Though we follow a very classic &ldquo;Misfit &amp; Kingdom&rdquo; style, we try to make sure our RP surpasses the standard, dull, repetitive RP tropes that seem to be everywhere.</p>
+  </section>
+
+  <!-- ===== What we offer ===== -->
+  <section id="offer">
+    <p class="eyebrow">What we offer</p>
+    <h2>A story for every kind of roleplayer</h2>
+    <div class="offer">
+      <div class="tile">
+        <h3>Company-Wide Story Lines</h3>
+        <p>Plots that everyone can engage in and participate with.</p>
+      </div>
+      <div class="tile">
+        <h3>Focused RP Styles</h3>
+        <p>More specific RP opportunities tailored to a more focused style, like guard-style RP, magic ritual RP, or pure social RP.</p>
+      </div>
+      <div class="tile">
+        <h3>Member-Driven RP</h3>
+        <p>Bring your own story lines and plots to the forefront of our company, and engage with plots that help with your own personal character development.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Structure ===== -->
+  <section id="structure">
+    <p class="eyebrow">How we're led</p>
+    <h2>Our structure</h2>
+    <div class="ladder">
+      <div class="rung top">
+        <div class="step">Leader</div>
+        <h3>The Harbinger</h3>
+        <p class="role">The FC leader</p>
+      </div>
+      <div class="rung">
+        <div class="step">Officers</div>
+        <h3>The Advocates</h3>
+        <p class="role">Our officers</p>
+      </div>
+      <div class="rung">
+        <div class="step">Limited officers</div>
+        <h3>Sect Leaders</h3>
+        <p class="role">A special group, one for each sect</p>
+      </div>
+      <div class="rung">
+        <div class="step">Members</div>
+        <h3>The Kin</h3>
+        <p class="role">Standard members</p>
+        <p class="desc">Free to join in any FC-wide plots and enjoy the FC as is.</p>
+      </div>
+    </div>
+    <p class="lead muted" style="margin-top:22px">Members enter our FC as Kin. If someone wishes to have a more catered RP experience, we have 4 sects (sections) members can join.</p>
+  </section>
+
+  <!-- ===== Sects ===== -->
+  <section id="sects">
+    <p class="eyebrow">Find your calling</p>
+    <h2>The four sects</h2>
+
+    <div class="sects">
+
+      <article class="sect onyx">
+        <div class="head">
+          <img src="images/onyx.jpg" alt="Onyx Blood Guard emblem" loading="lazy">
+          <div>
+            <h3>The Onyx Blood Guard</h3>
+            <p class="leader">Sect Leader: <b>The Prefect</b></p>
+          </div>
+        </div>
+        <p class="body">Our magic section. It handles the research, study, and employment of all magical aspects for the FC.</p>
+        <p class="for"><b>Great for</b>Summoners, mages, warlocks, anyone interested in the occult, RPs with heavy magic.</p>
+        <p class="quiet">It also houses our darker, secret, underground taboo RP place that isn't public.</p>
+        <div class="eg"><b>Example RPs</b>
+          <div class="chips"><span class="chip">Ward casting</span><span class="chip">Magical research</span><span class="chip">Rituals</span><span class="chip">Charm creations</span></div>
+        </div>
+      </article>
+
+      <article class="sect vanguard">
+        <div class="head">
+          <img src="images/vanguard.jpg" alt="Iron Vanguard emblem" loading="lazy">
+          <div>
+            <h3>The Iron Vanguard</h3>
+            <p class="leader">Sect Leader: <b>The Vanguard Commander</b></p>
+          </div>
+        </div>
+        <p class="body">Our military sect and peacekeepers. Heavy RP combat.</p>
+        <p class="for"><b>Great for</b>Anyone RPing a fighter, guard, or knight, or anyone whose main RP style is fighting.</p>
+        <div class="eg"><b>Example RPs</b>
+          <div class="chips"><span class="chip">Escorts</span><span class="chip">Patrols</span><span class="chip">Guarding</span><span class="chip">Sparring</span></div>
+        </div>
+      </article>
+
+      <article class="sect lifewatch">
+        <div class="head">
+          <img src="images/lifewatch.jpg" alt="Life Watch emblem" loading="lazy">
+          <div>
+            <h3>The Life Watch</h3>
+            <p class="leader">Sect Leader: <b>The Life Warden</b></p>
+          </div>
+        </div>
+        <p class="body">Our healing sect, for those whose main focus is the health and well-being of not only our members' bodies, but their minds as well.</p>
+        <p class="for"><b>Great for</b>Healers and combat medics. Healers don't stop at the physical, but can also help with mental health as well.</p>
+        <div class="eg"><b>Example RPs</b>
+          <div class="chips"><span class="chip">Medical screenings</span><span class="chip">Clinics</span><span class="chip">Resource gathering &amp; potion making</span><span class="chip">Healing after combat, like a patrol or a sparring session</span></div>
+        </div>
+      </article>
+
+      <article class="sect ember">
+        <div class="head">
+          <img src="images/ember-court.jpg" alt="Ember Court emblem" loading="lazy">
+          <div>
+            <h3>The Ember Court</h3>
+            <p class="leader">Sect Leader: <b>The Baron / Baroness</b></p>
+          </div>
+        </div>
+        <p class="body">Strictly our social sect, designed to help push RP plots along, start and engage with new members in casual RP, and help new members find a sect to join. They plan events and social RPs: holiday events, birthdays, classic venue nights.</p>
+        <div class="eg"><b>Example RPs</b>
+          <div class="chips"><span class="chip">Planning a Halloween costume party</span><span class="chip">Hosting a venue night</span><span class="chip">Meeting new members for casual social RP</span></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="closing">Each sect plays a vital part in the overall RP of our free company, and each has a special place in our overall RP plots. This helps to ensure everyone is included in some way!</p>
+  </section>
+
+  <!-- ===== Example plot ===== -->
+  <section id="plot">
+    <p class="eyebrow">See it in action</p>
+    <h2>Example RP plot &amp; sect involvement</h2>
+    <figure class="plotfig">
+      <button class="plotbtn" id="plotBtn" type="button" aria-label="Enlarge the example plot graphic">
+        <img src="images/plot-example.jpg" alt="The Kinship roleplay plot progression: 1. Vanguard Patrol. 2. Ambush and Discovery. 3. Triage and Report. 4. Occult Research. 5. Social Intrigue. 6. Council Conclave." loading="lazy">
+      </button>
+      <figcaption>Tap the image to enlarge</figcaption>
+    </figure>
+    <dialog class="lightbox" id="lightbox" aria-label="Example plot, enlarged">
+      <img src="images/plot-example.jpg" alt="The Kinship roleplay plot progression, enlarged">
+    </dialog>
+  </section>
+
+  <!-- ===== Join ===== -->
+  <section class="cta" id="join">
+    <p class="eyebrow">Interested?</p>
+    <h2>Come find your place with us</h2>
+    <p>If The Kinship sounds like home, send us a message or head straight to the application.</p>
+    <div class="btns">
+      <a class="btn primary off" id="applyBtn" href="#" aria-disabled="true">Apply to join</a>
+      <a class="btn" id="contactBtn" href="mailto:Thekinship.ffxiv@gmail.com">Contact us</a>
+    </div>
+    <p class="tiny" id="applyNote">The application opens soon. Contact us in the meantime.</p>
+  </section>
+
+  <footer>
+    <a class="back" href="index.html">&larr; Back to home</a>
+  </footer>
+</div>
+
+<script>
+// Same published Google Sheet as the home page: used only for the Apply link and contact email
+const FACTION_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAGpMH_xMZvl3V_Pxo-e57S1D9Q2RhjpGxtN2romaYZer0CjAI3qlYzgZa4SUpNZsIbX0Dt3ag6-Jg/pub?gid=0&single=true&output=csv";
+
+function parseCSV(text) {
+  const rows = []; let row = [], cell = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+      else if (c === '"') q = false;
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === ",") { row.push(cell); cell = ""; }
+    else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(cell); rows.push(row); row = []; cell = "";
+    } else cell += c;
+  }
+  if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter(r => r.some(x => x.trim() !== ""));
+}
+
+const $ = id => document.getElementById(id);
+
+async function main() {
+  try {
+    const res = await fetch(FACTION_URL);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const rows = parseCSV(await res.text());
+    const d = {};
+    rows.slice(1).forEach(r => { d[(r[0] || "").trim().toLowerCase()] = (r[1] || "").trim(); });
+
+    if (/^https?:\/\//i.test(d.application_url || "")) {
+      const a = $("applyBtn");
+      a.href = d.application_url; a.target = "_blank"; a.rel = "noopener";
+      a.classList.remove("off"); a.removeAttribute("aria-disabled");
+      $("applyNote").hidden = true;
+    }
+    if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.contact_email || "")) {
+      $("contactBtn").href = "mailto:" + d.contact_email;
+    }
+  } catch (e) { /* the page still works; Apply stays "coming soon" and Contact still has its default email */ }
+}
+main();
+
+// Enlarge / close the plot graphic
+(function () {
+  const dlg = $("lightbox"), btn = $("plotBtn");
+  if (!dlg || typeof dlg.showModal !== "function") {   // very old browsers: just open the image
+    btn.addEventListener("click", () => window.open("images/plot-example.jpg", "_blank"));
+    return;
+  }
+  btn.addEventListener("click", () => dlg.showModal());
+  dlg.addEventListener("click", () => dlg.close());
+})();
+</script>
+</body>
+</html>
