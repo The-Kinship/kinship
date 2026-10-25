@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Sects | The Kinship</title>
+<meta name="description" content="The four sects of The Kinship. Members only.">
+<link rel="stylesheet" href="kinship.css">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="pill" href="index.html">&larr; Back to home</a>
+    <a class="pill" href="explore.html">About the free company</a>
+  </nav>
+
+  <header class="hero">
+    <div class="emblem"><img src="images/sects-emblem.jpg" alt="The four sect emblems"></div>
+    <h1>The Sects</h1>
+    <p class="sub">Four paths, one purpose. Choose a sect and enter with its password.</p>
+    <div class="rule" aria-hidden="true"></div>
+  </header>
+
+  <main class="scards" id="cards"></main>
+
+  <p class="foot-note">Not in a sect yet? <a href="explore.html">Learn what each one does</a>, then reach out or apply. Any Kin can ask to join a sect.</p>
+</div>
+
+<script src="kinship.js"></script>
+<script>
+(function () {
+  const K = window.Kinship;
+  const box = document.getElementById("cards");
+
+  K.ORDER.forEach(key => {
+    const s = K.SECTS[key];
+    const btn = document.createElement("button");
+    btn.type = "button"; btn.className = "scard"; btn.dataset.sect = key;
+    btn.style.setProperty("--c", s.color);
+    btn.setAttribute("aria-label", s.name + ", members only. Opens a password prompt.");
+
+    const img = document.createElement("img"); img.src = s.img; img.alt = ""; img.loading = "lazy";
+    const txt = document.createElement("div");
+    const h = document.createElement("h2"); h.textContent = s.name;
+    const l = document.createElement("p"); l.className = "leader";
+    l.append("Sect Leader: "); const b = document.createElement("b"); b.textContent = s.leader; l.append(b);
+    const bl = document.createElement("p"); bl.className = "blurb"; bl.textContent = s.blurb;
+    const lock = document.createElement("span"); lock.className = "lock";
+    lock.textContent = K.isUnlocked(key) ? "Unlocked ✓" : "Members only";
+    txt.append(h, l, bl, lock);
+    btn.append(img, txt);
+
+    const go = () => { window.location.href = "sect.html?s=" + key; };
+    btn.addEventListener("click", () => {
+      if (K.isUnlocked(key)) go();
+      else K.openGate(key, { dismissable: true, onSuccess: go });
+    });
+    box.append(btn);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sect | The Kinship</title>
+<link rel="stylesheet" href="kinship.css">
+</head>
+<body>
+<div class="wrap" id="wrap">
+
+  <nav class="topnav">
+    <a class="pill" href="sects.html">&larr; The Sects</a>
+    <a class="pill" href="index.html">Home</a>
+  </nav>
+
+  <main id="app"></main>
+
+</div>
+
+<script src="kinship.js"></script>
+<script>
+(function () {
+  const K = window.Kinship;
+  const key = (new URLSearchParams(location.search).get("s") || "").toLowerCase();
+  const sect = K.SECTS[key];
+  const app = document.getElementById("app");
+
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+  if (!sect) {
+    const d = el("div", "err-box");
+    d.append(el("p", null, "We couldn't find that sect."));
+    const a = el("a", "pill", "Go to The Sects"); a.href = "sects.html"; d.append(a);
+    app.append(d);
+    return;
+  }
+
+  document.title = sect.name + " | The Kinship";
+  document.documentElement.style.setProperty("--c", sect.color);
+
+  if (K.isUnlocked(key)) render();
+  else K.openGate(key, { dismissable: false, backHref: "sects.html", onSuccess: render });
+
+  async function render() {
+    // ----- hero -----
+    const isCrypt = key === "crypt";
+    const hero = el("header", "hero");
+    const em = el("div", "emblem"); const im = el("img"); im.src = sect.img; im.alt = sect.name + " emblem"; em.append(im);
+    hero.append(em, el("h1", null, isCrypt ? "Welcome to the Onyx Crypt" : sect.name));
+    const chips = el("div", "chips"); chips.id = "chips";
+    hero.append(chips, el("div", "rule sect"));
+    app.append(hero);
+
+    const stack = el("div", "stack");
+    app.append(stack);
+    const loading = el("p", "muted-note", "Loading…"); loading.style.textAlign = "center"; stack.append(loading);
+
+    let data;
+    try { data = await K.loadRows(); }
+    catch (e) { loading.textContent = "Couldn't load this page's content right now. Please try again later."; return; }
+    loading.remove();
+
+    if (data.sample) {
+      const n = el("div", "notice-sample", "Showing sample content. Connect your SectContent sheet to show your own.");
+      hero.append(n);
+    }
+
+    const mine = section => data.rows.filter(r => r.sect === key && r.section === section).sort((a, b) => a.order - b.order);
+    const members = mine("member");
+
+    // chips: leader + member count
+    if (sect.leader) { const c = el("span", "chip"); c.append("Sect Leader: "); c.append(el("b", null, sect.leader)); chips.append(c); }
+    if (!isCrypt) { const c = el("span", "chip"); c.append("Members: "); c.append(el("b", null, String(members.length))); chips.append(c); }
+    if (!chips.children.length) chips.remove();
+
+    // builders
+    const panel = (title, feature) => { const p = el("section", "panel" + (feature ? " feature" : "")); p.append(el("h2", null, title)); return p; };
+    const items = (p, rows, emptyText) => {
+      if (!rows.length) { p.append(el("p", "muted-note", emptyText)); return; }
+      rows.forEach(r => { const i = el("div", "item"); if (r.title) i.append(el("h3", null, r.title)); if (r.text) i.append(el("p", null, r.text)); p.append(i); });
+    };
+
+    const plots = panel(isCrypt ? "Current Plots" : "Current Plots", true);
+    items(plots, mine("plot"), "No active plots right now.");
+
+    const info = panel(isCrypt ? "Information" : "Sect Information");
+    items(info, mine("info"), "Nothing here yet.");
+
+    if (isCrypt) {
+      stack.append(info, plots);
+    } else {
+      const notice = panel("Notice Board");
+      items(notice, mine("notice"), "No notices right now.");
+
+      const cols = el("div", "cols"); cols.append(notice, info);
+
+      const rules = panel("Sect Rules");
+      const rrows = mine("rules");
+      if (!rrows.length) rules.append(el("p", "muted-note", "No rules posted yet."));
+      else {
+        const ol = el("ol", "rules");
+        rrows.forEach(r => { const li = el("li"); const d = el("div"); if (r.title) d.append(el("span", "rt", r.title)); if (r.text) d.append(el("span", "rx", r.text)); li.append(d); ol.append(li); });
+        rules.append(ol);
+      }
+
+      const roster = panel("Members");
+      if (!members.length) roster.append(el("p", "muted-note", "No members listed yet."));
+      else {
+        const g = el("div", "roster");
+        members.forEach(m => { const c = el("div", "member"); c.append(el("b", null, m.title)); if (m.text) c.append(el("span", null, m.text)); g.append(c); });
+        roster.append(g);
+      }
+      stack.append(plots, cols, rules, roster);
+    }
+
+    // ----- the hidden knock link: Onyx Blood Guard page only -----
+    if (key === "onyx") {
+      const k = el("a", "knock", "Knock twice, bleed once");
+      k.href = "#";
+      k.addEventListener("click", e => {
+        e.preventDefault();
+        const go = () => { location.href = "sect.html?s=crypt"; };
+        if (K.isUnlocked("crypt")) go(); else K.openGate("crypt", { dismissable: true, onSuccess: go });
+      });
+      document.getElementById("wrap").append(k);
+    }
+  }
+})();
+</script>
+</body>
+</html>
