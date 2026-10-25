@@ -168,6 +168,20 @@
     .tagline { align-self: end; padding-bottom: 6px; }
   }
 
+  /* ---------- Kinship Combat banner ---------- */
+  .combat {
+    position: relative; display: block; text-decoration: none; color: var(--text);
+    margin: 0 0 30px; border: 1px solid var(--edge); border-radius: 16px; overflow: hidden;
+    background: var(--panel); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .combat::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; z-index: 2; background: linear-gradient(90deg, var(--gold), var(--steel)); }
+  .combat img { width: 100%; height: auto; display: block; }
+  .combat .cap { display: block; padding: 12px 16px 16px; text-align: center; border-top: 1px solid var(--edge); }
+  .combat .cap b { display: block; font-size: 1.2rem; font-weight: normal; letter-spacing: .06em; color: var(--gold-soft); }
+  .combat .cap span { font-size: .92rem; color: var(--muted); }
+  a.combat:hover, a.combat:focus-visible { transform: translateY(-3px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 26px rgba(212,169,79,.28); }
+  .combat.soon { cursor: default; filter: saturate(.75); }
+
   /* ---------- Footer ---------- */
   footer { text-align: center; padding-top: 6px; color: var(--muted); font-size: .9rem; }
   .mail {
@@ -251,6 +265,13 @@
     </a>
   </nav>
 
+  <!-- Kinship Combat: wide banner button -->
+  <a class="combat soon" id="cardCombat" href="#" aria-disabled="true">
+    <span class="badge">Coming soon</span>
+    <img src="images/kinship-combat-banner.jpg" alt="Kinship Combat: Active RP Encounters">
+    <span class="cap"><b>Run an RP encounter</b><span>Shared HP and turns, with server-rolled d20 dice. Open it beside the game.</span></span>
+  </a>
+
   <footer>
     Questions? Reach us at<br>
     <a class="mail" id="mail" href="mailto:Thekinship.ffxiv@gmail.com">Thekinship.ffxiv@gmail.com</a>
@@ -267,6 +288,9 @@ const DEFAULT_LOGO = "images/kinship-crest.jpg";
 // ---- Pages for the two cards (fill these in as we build the pages) ----
 // Leave "" and the card shows "Coming soon". Example: kin: "kin.html"
 const PAGES = { kin: "explore.html", sects: "sects.html" };
+
+// ---- Address of the Kinship Combat site (fill in once it is hosted). Empty = "Coming soon". ----
+const COMBAT_URL = "";
 
 // Small CSV parser that handles quoted fields
 function parseCSV(text) {
@@ -311,6 +335,7 @@ function enableCard(id, href, external) {
 async function main() {
   enableCard("cardKin", PAGES.kin);
   enableCard("cardSects", PAGES.sects);
+  enableCard("cardCombat", COMBAT_URL, true);
 
   try {
     const rows = await load(FACTION_URL);
