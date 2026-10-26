@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Kin | The Kinship</title>
+<meta name="description" content="Meet the members of The Kinship.">
+<link rel="stylesheet" href="kinship.css">
+<style>
+  .sortbar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin: 22px 0 6px; }
+  .sortbar span { color: var(--muted); font-size: .92rem; margin-right: 4px; }
+  .sortbar button {
+    font: inherit; font-size: .92rem; color: var(--gold-soft); background: var(--panel); cursor: pointer;
+    border: 1px solid var(--edge); border-radius: 999px; padding: 5px 16px; letter-spacing: .04em;
+  }
+  .sortbar button[aria-pressed="true"] { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 14%, var(--panel)); }
+  .sortbar button:hover, .sortbar button:focus-visible { border-color: var(--gold); }
+  .group-head { margin: 30px 0 4px; font-size: 1.1rem; letter-spacing: .06em; color: var(--c); border-bottom: 1px solid color-mix(in srgb, var(--c) 40%, var(--edge)); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; margin-top: 16px; }
+  .person {
+    font: inherit; color: inherit; text-align: center; cursor: pointer; padding: 0 0 14px;
+    background: var(--panel); border: 1px solid var(--edge); border-top: 3px solid var(--c); border-radius: 14px; overflow: hidden;
+  }
+  .person:hover, .person:focus-visible { box-shadow: 0 0 22px color-mix(in srgb, var(--c) 35%, transparent); border-color: var(--c); }
+  .person .pic { aspect-ratio: 1; background: #0d1016; display: block; }
+  .person .pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .person .nm { display: block; margin-top: 10px; font-size: 1.08rem; color: var(--gold-soft); padding: 0 8px; }
+  .person .sc { display: block; font-size: .85rem; color: var(--c); letter-spacing: .05em; }
+  .person .rk { display: block; font-size: .82rem; color: var(--muted); }
+  .empty { text-align: center; color: var(--muted); margin-top: 30px; }
+  dialog { background: var(--panel); color: var(--text); border: 1px solid var(--c); border-radius: 16px; padding: 0; max-width: min(560px, 94vw); width: 100%; }
+  dialog::backdrop { background: rgba(5,6,10,.72); }
+  .prof { padding: 22px; text-align: center; }
+  .prof img { max-width: 100%; max-height: 52vh; border-radius: 12px; display: block; margin: 0 auto 14px; }
+  .prof h2 { margin: 0; font-weight: normal; color: var(--gold-soft); font-size: 1.6rem; }
+  .prof .sc { color: var(--c); letter-spacing: .06em; }
+  .prof .rk { color: var(--muted); font-size: .92rem; }
+  .prof dl { margin: 12px 0 0; color: var(--muted); }
+  .prof dl b { color: var(--text); font-weight: normal; }
+  .prof p { text-align: left; margin: 14px 0 0; white-space: pre-line; }
+  .prof .btns { display: flex; justify-content: center; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .prof .btns a, .prof .btns button {
+    font: inherit; text-decoration: none; cursor: pointer; padding: 8px 20px; border-radius: 999px;
+    border: 1px solid var(--edge); background: var(--bg); color: var(--gold-soft);
+  }
+  .prof .btns a { background: var(--gold); color: #1a1408; border-color: var(--gold); }
+  .submit { text-align: center; margin: 44px 0 0; }
+  .submit p { color: var(--muted); font-size: .92rem; margin: 10px 0 0; }
+  .submit a { display: inline-block; padding: 12px 28px; border-radius: 999px; background: var(--gold); color: #1a1408; font-weight: 600; text-decoration: none; letter-spacing: .03em; }
+  .submit a.off { opacity: .55; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav">
+    <a class="pill" href="index.html">&larr; Back to home</a>
+    <a class="pill" href="explore.html">About the free company</a>
+  </nav>
+
+  <header class="hero">
+    <h1>The Kin</h1>
+    <p class="sub">Meet the members of The Kinship.</p>
+    <div class="rule" aria-hidden="true"></div>
+  </header>
+
+  <div class="sortbar" role="group" aria-label="Sort the roster">
+    <span>Sort:</span>
+    <button type="button" data-sort="az" aria-pressed="true">A to Z</button>
+    <button type="button" data-sort="sect" aria-pressed="false">By sect</button>
+    <button type="button" data-sort="rank" aria-pressed="false">By rank</button>
+  </div>
+
+  <main id="roster"><p class="empty">Loading…</p></main>
+
+  <section class="submit">
+    <a class="off" id="submitBtn" href="#" aria-disabled="true">Submit profile / make changes</a>
+    <p id="submitNote">Profile submissions open soon.</p>
+  </section>
+</div>
+
+<dialog id="dlg" aria-label="Profile"><div class="prof" id="prof"></div></dialog>
+
+<script>
+const FACTION_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAGpMH_xMZvl3V_Pxo-e57S1D9Q2RhjpGxtN2romaYZer0CjAI3qlYzgZa4SUpNZsIbX0Dt3ag6-Jg/pub?gid=0&single=true&output=csv";
+const SECTS = {
+  onyx:  { name: "The Onyx Blood Guard", color: "#8b5cf6" },
+  iron:  { name: "The Iron Vanguard",    color: "#8fa6cf" },
+  life:  { name: "The Life Watch",       color: "#4f9d5d" },
+  ember: { name: "The Ember Court",      color: "#d9472b" },
+};
+const SECT_ORDER = ["onyx", "iron", "life", "ember"];
+const $ = id => document.getElementById(id);
+const safeUrl = u => /^https?:\/\//i.test(u || "") ? u : "";
+
+function parseCSV(text) {
+  const rows = []; let row = [], cell = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; } else if (c === '"') q = false; else cell += c; }
+    else if (c === '"') q = true;
+    else if (c === ",") { row.push(cell); cell = ""; }
+    else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+    else cell += c;
+  }
+  if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter(r => r.some(x => x.trim() !== ""));
+}
+async function load(url) { const r = await fetch(url); if (!r.ok) throw new Error(r.status); return parseCSV(await r.text()); }
+
+function sectKey(s) {
+  const t = (s || "").toLowerCase();
+  if (t.includes("onyx") || t.includes("blood")) return "onyx";
+  if (t.includes("iron") || t.includes("vanguard")) return "iron";
+  if (t.includes("life") || t.includes("watch")) return "life";
+  if (t.includes("ember") || t.includes("court")) return "ember";
+  return "";
+}
+function rankIndex(r) {
+  const t = (r || "").toLowerCase();
+  if (t.includes("harbinger")) return 0;
+  if (t.includes("advocate")) return 1;
+  if (/leader|prefect|commander|warden|baron/.test(t)) return 2;
+  return 3;
+}
+const RANK_NAMES = ["The Harbinger", "The Advocates", "Sect Leaders", "The Kin"];
+const portrait = f => !f ? "" : (/^https?:\/\//i.test(f) ? f : "images/roster/" + encodeURIComponent(f));
+const colorOf = p => SECTS[sectKey(p.sect)]?.color || "#a3a9b8";
+const sectLabel = p => SECTS[sectKey(p.sect)]?.name || p.sect || "Kin";
+const byName = (a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+
+let people = [], sort = "az";
+
+function card(p) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "person"; b.style.setProperty("--c", colorOf(p));
+  const pic = document.createElement("span"); pic.className = "pic";
+  if (p.portrait) { const im = document.createElement("img"); im.src = portrait(p.portrait); im.alt = ""; im.loading = "lazy"; im.onerror = () => im.remove(); pic.appendChild(im); }
+  const nm = document.createElement("span"); nm.className = "nm"; nm.textContent = p.name;
+  const sc = document.createElement("span"); sc.className = "sc"; sc.textContent = sectLabel(p);
+  b.append(pic, nm, sc);
+  if (p.rank) { const rk = document.createElement("span"); rk.className = "rk"; rk.textContent = p.rank; b.appendChild(rk); }
+  b.onclick = () => openProfile(p);
+  return b;
+}
+
+function render() {
+  const box = $("roster"); box.textContent = "";
+  document.querySelectorAll(".sortbar button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.sort === sort)));
+  if (!people.length) { const e = document.createElement("p"); e.className = "empty"; e.textContent = "No profiles yet."; box.appendChild(e); return; }
+  const groups = [];
+  if (sort === "az") groups.push({ title: "", list: [...people].sort(byName) });
+  else if (sort === "sect") {
+    [...SECT_ORDER, ""].forEach(k => {
+      const list = people.filter(p => sectKey(p.sect) === k).sort((a, b) => (a.order - b.order) || byName(a, b));
+      if (list.length) groups.push({ title: k ? SECTS[k].name : "Kin (no sect yet)", color: k ? SECTS[k].color : "", list });
+    });
+  } else {
+    RANK_NAMES.forEach((n, i) => {
+      const list = people.filter(p => rankIndex(p.rank) === i).sort((a, b) => (a.order - b.order) || byName(a, b));
+      if (list.length) groups.push({ title: n, list });
+    });
+  }
+  groups.forEach(g => {
+    if (g.title) { const h = document.createElement("h2"); h.className = "group-head"; h.textContent = g.title; if (g.color) h.style.setProperty("--c", g.color); box.appendChild(h); }
+    const grid = document.createElement("div"); grid.className = "grid";
+    g.list.forEach(p => grid.appendChild(card(p))); box.appendChild(grid);
+  });
+}
+
+function openProfile(p) {
+  const d = $("dlg"), box = $("prof"); box.textContent = "";
+  d.style.setProperty("--c", colorOf(p));
+  if (p.portrait) { const im = document.createElement("img"); im.src = portrait(p.portrait); im.alt = p.name + " portrait"; im.onerror = () => im.remove(); box.appendChild(im); }
+  const h = document.createElement("h2"); h.textContent = p.name; box.appendChild(h);
+  const sc = document.createElement("div"); sc.className = "sc"; sc.textContent = sectLabel(p); box.appendChild(sc);
+  if (p.rank) { const rk = document.createElement("div"); rk.className = "rk"; rk.textContent = p.rank; box.appendChild(rk); }
+  const dl = document.createElement("dl");
+  [["Race", p.race], ["Age", p.age]].forEach(([k, v]) => { if (v) { const r = document.createElement("div"); const b = document.createElement("b"); b.textContent = v; r.append(k + ": ", b); dl.appendChild(r); } });
+  box.appendChild(dl);
+  if (p.bio) { const bio = document.createElement("p"); bio.textContent = p.bio; box.appendChild(bio); }
+  const btns = document.createElement("div"); btns.className = "btns";
+  const c = safeUrl(p.carrd);
+  if (c) { const a = document.createElement("a"); a.href = c; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Open their Carrd"; btns.appendChild(a); }
+  const close = document.createElement("button"); close.type = "button"; close.textContent = "Close"; close.onclick = () => d.close(); btns.appendChild(close);
+  box.appendChild(btns);
+  d.showModal();
+}
+$("dlg").addEventListener("click", e => { if (e.target === $("dlg")) $("dlg").close(); });
+document.querySelectorAll(".sortbar button").forEach(b => b.onclick = () => { sort = b.dataset.sort; render(); });
+
+(async function main() {
+  let d = {};
+  try {
+    (await load(FACTION_URL)).slice(1).forEach(r => { d[(r[0] || "").trim().toLowerCase()] = (r[1] || "").trim(); });
+  } catch (e) { $("roster").innerHTML = '<p class="empty">Couldn’t load the roster right now. Please try again later.</p>'; return; }
+
+  const form = safeUrl(d.profile_form_url) || safeUrl(d.application_url);
+  if (form) { const a = $("submitBtn"); a.href = form; a.target = "_blank"; a.rel = "noopener"; a.classList.remove("off"); a.removeAttribute("aria-disabled"); $("submitNote").textContent = "Opens the form in a new tab."; }
+
+  const url = safeUrl(d.roster_csv_url);
+  if (!url) { $("roster").innerHTML = '<p class="empty">The roster opens soon.</p>'; return; }
+  try {
+    const rows = await load(url);
+    const head = rows[0].map(h => h.trim().toLowerCase());
+    const ix = n => head.indexOf(n), cell = (r, n) => (ix(n) >= 0 && r[ix(n)] ? r[ix(n)].trim() : "");
+    people = rows.slice(1).map(r => ({
+      name: cell(r, "name"), sect: cell(r, "sect"), rank: cell(r, "rank"), race: cell(r, "race"), age: cell(r, "age"),
+      bio: cell(r, "bio"), portrait: cell(r, "portrait"), carrd: cell(r, "carrd_url"),
+      status: cell(r, "status").toLowerCase(), order: parseFloat(cell(r, "order")) || 999,
+    })).filter(p => p.name && p.status !== "hidden");
+    render();
+  } catch (e) { $("roster").innerHTML = '<p class="empty">Couldn’t load the roster right now. Please try again later.</p>'; }
+})();
+</script>
+</body>
+</html>
