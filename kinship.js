@@ -121,5 +121,54 @@
     setTimeout(() => input.focus(), 30);
   }
 
-  window.Kinship = { SECTS, ORDER, openGate, isUnlocked, loadRows };
+  // ---------- The roster (who is in which sect) ----------
+  const FACTION_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAGpMH_xMZvl3V_Pxo-e57S1D9Q2RhjpGxtN2romaYZer0CjAI3qlYzgZa4SUpNZsIbX0Dt3ag6-Jg/pub?gid=0&single=true&output=csv";
+  function parseCSV(text) {
+    const rows = []; let row = [], cell = "", q = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) { if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; } else if (c === '"') q = false; else cell += c; }
+      else if (c === '"') q = true;
+      else if (c === ",") { row.push(cell); cell = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+      else cell += c;
+    }
+    if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+    return rows.filter(r => r.some(x => x.trim() !== ""));
+  }
+  async function loadCsv(url) { const r = await fetch(url); if (!r.ok) throw new Error(r.status); return parseCSV(await r.text()); }
+  function sectKey(s) {
+    const t = (s || "").toLowerCase();
+    if (t.includes("onyx") || t.includes("blood")) return "onyx";
+    if (t.includes("iron") || t.includes("vanguard")) return "iron";
+    if (t.includes("life") || t.includes("watch")) return "life";
+    if (t.includes("ember") || t.includes("court")) return "ember";
+    return "";
+  }
+  function rankIndex(r) {
+    const t = (r || "").toLowerCase();
+    if (t.includes("harbinger")) return 0;
+    if (t.includes("advocate")) return 1;
+    if (/leader|prefect|commander|warden|baron/.test(t)) return 2;
+    return 3;
+  }
+  let rosterCache = null;
+  // Everyone on the Roster tab (hidden ones left out), with the sect key each belongs to. Throws if the roster can't be read.
+  async function loadRoster() {
+    if (rosterCache) return rosterCache;
+    const d = {};
+    (await loadCsv(FACTION_URL)).slice(1).forEach(r => { d[(r[0] || "").trim().toLowerCase()] = (r[1] || "").trim(); });
+    if (!/^https?:\/\//i.test(d.roster_csv_url || "")) throw new Error("no roster");
+    const rows = await loadCsv(d.roster_csv_url);
+    const head = rows[0].map(h => h.trim().toLowerCase());
+    const cell = (r, n) => { const i = head.indexOf(n); return i >= 0 && r[i] ? r[i].trim() : ""; };
+    rosterCache = rows.slice(1).map(r => ({
+      name: cell(r, "name"), sect: sectKey(cell(r, "sect")), rank: cell(r, "rank"),
+      status: cell(r, "status").toLowerCase(), order: parseFloat(cell(r, "order")) || 999
+    })).filter(p => p.name && p.status !== "hidden")
+       .sort((a, b) => rankIndex(a.rank) - rankIndex(b.rank) || a.order - b.order || a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+    return rosterCache;
+  }
+
+  window.Kinship = { SECTS, ORDER, openGate, isUnlocked, loadRows, loadRoster };
 })();

@@ -19,7 +19,7 @@
 
 </div>
 
-<script src="kinship.js"></script>
+<script src="kinship.js?v=3"></script>
 <script>
 (function () {
   const K = window.Kinship;
@@ -66,7 +66,9 @@
     loading.remove();
 
     const mine = section => data.rows.filter(r => r.sect === key && r.section === section).sort((a, b) => a.order - b.order);
-    const members = mine("member");
+    // Who is in this sect comes from the Roster tab, so the count and the list always match the real members.
+    let members = mine("member");
+    try { members = (await K.loadRoster()).filter(p => p.sect === key).map(p => ({ title: p.name, text: p.rank })); } catch (e) { /* keep the sheet's own list if the roster can't be read */ }
 
     // chips: leader + member count
     if (sect.leader) { const c = el("span", "chip"); c.append("Sect Leader: "); c.append(el("b", null, sect.leader)); chips.append(c); }
