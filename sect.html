@@ -58,14 +58,12 @@
     const loading = el("p", "muted-note", "Loading…"); loading.style.textAlign = "center"; stack.append(loading);
 
     let data;
-    try { data = await K.loadRows(); }
-    catch (e) { loading.textContent = "Couldn't load this page's content right now. Please try again later."; return; }
-    loading.remove();
-
-    if (data.sample) {
-      const n = el("div", "notice-sample", "Showing sample content. Connect your SectContent sheet to show your own.");
-      hero.append(n);
+    try { data = await K.loadRows(key); }
+    catch (e) {
+      if (e.status === 401) { location.reload(); return; }   // the saved entry stopped working, so ask for the password again
+      loading.textContent = "Couldn't load this page's content right now. Please try again later."; return;
     }
+    loading.remove();
 
     const mine = section => data.rows.filter(r => r.sect === key && r.section === section).sort((a, b) => a.order - b.order);
     const members = mine("member");
