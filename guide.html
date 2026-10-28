@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rafter Cat's RP Toolbox: Guide | The Kinship</title>
+<meta name="description" content="A guide to Rafter Cat's RP Toolbox, the Kinship's in-game role-play plugin: items, gear, profiles, quests, mail, combat, parties and more.">
+<style>
+  :root {
+    --bg: #11141b; --panel: #181c26; --edge: #2c3242; --text: #e9e6dc; --muted: #a3a9b8;
+    --gold: #d4a94f; --gold-soft: #f0d58a; --purple: #8b5cf6; --silver: #c4cad6; --steel: #8fa6cf; --green: #4f9d5d; --red: #d9472b;
+    --sects: linear-gradient(90deg, var(--purple), var(--silver), var(--green), var(--red));
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(900px 520px at 0% 0%, rgba(139,92,246,.13), transparent 62%),
+      radial-gradient(900px 520px at 100% 0%, rgba(217,71,43,.10), transparent 62%),
+      radial-gradient(900px 600px at 0% 100%, rgba(79,157,93,.10), transparent 62%),
+      radial-gradient(900px 600px at 100% 100%, rgba(196,202,214,.06), transparent 62%),
+      var(--bg);
+    background-repeat: no-repeat;
+    color: var(--text); font-family: Georgia, "Times New Roman", serif; line-height: 1.7;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 22px 20px 56px; }
+  .back {
+    display: inline-block; text-decoration: none; color: var(--gold-soft); font-size: .9rem; letter-spacing: .06em; padding: 6px 14px;
+    border: 1px solid var(--edge); border-radius: 999px; background: var(--panel);
+  }
+  .back:hover, .back:focus-visible { border-color: var(--gold); box-shadow: 0 0 16px rgba(212,169,79,.25); }
+
+  .banner {
+    position: relative; margin: 14px 0 0; border: 1px solid var(--gold); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(212,169,79,.22), 0 0 38px rgba(212,169,79,.20); background: var(--panel);
+  }
+  .banner::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; z-index: 2; background: linear-gradient(90deg, var(--gold), var(--steel)); }
+  .banner img { width: 100%; height: auto; display: block; }
+  .sect-rule { height: 3px; border-radius: 3px; background: var(--sects); opacity: .85; margin: 18px auto 0; max-width: 760px; }
+
+  .jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 6px; }
+  .jump a {
+    text-decoration: none; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+    padding: 6px 14px; border: 1px solid var(--edge); border-radius: 999px; background: var(--panel);
+  }
+  .jump a:hover, .jump a:focus-visible { color: var(--gold-soft); border-color: var(--gold); }
+
+  section { margin-top: 46px; }
+  .eyebrow { margin: 0; text-align: center; font-size: .78rem; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); }
+  h2 { margin: 4px 0 18px; text-align: center; font-weight: normal; font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--gold-soft); }
+  .lead { max-width: 760px; margin: 0 auto 14px; text-align: center; font-size: 1.12rem; }
+  .lead.muted { color: var(--muted); font-size: 1.02rem; }
+
+  .offer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+  .tile { border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); padding: 22px 20px 20px; position: relative; overflow: hidden; }
+  .tile::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--gold); }
+  .tile:nth-child(3n+2)::before { background: linear-gradient(90deg, var(--gold), var(--purple)); }
+  .tile:nth-child(3n)::before { background: linear-gradient(90deg, var(--gold), var(--green)); }
+  .tile h3 { margin: 0 0 6px; font-weight: normal; font-size: 1.2rem; color: var(--gold-soft); }
+  .tile p { margin: 0; color: var(--muted); }
+
+  .steps { counter-reset: s; display: grid; gap: 14px; max-width: 800px; margin: 22px auto 0; padding: 0; list-style: none; }
+  .steps li { counter-increment: s; position: relative; border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); padding: 14px 18px 14px 62px; }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-soft);
+    display: grid; place-items: center; background: rgba(212,169,79,.08);
+  }
+  .steps b { font-weight: normal; color: var(--gold-soft); }
+
+  .tabs { max-width: 860px; margin: 0 auto; display: grid; gap: 10px; }
+  details.tab { border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); overflow: hidden; }
+  details.tab[open] { border-color: var(--gold); box-shadow: 0 0 22px rgba(212,169,79,.14); }
+  details.tab summary { list-style: none; cursor: pointer; padding: 14px 18px 14px 44px; position: relative; display: block; }
+  details.tab summary::-webkit-details-marker { display: none; }
+  details.tab summary::before { content: "\25B8"; position: absolute; left: 18px; top: 14px; color: var(--gold); transition: transform .15s; }
+  details.tab[open] summary::before { transform: rotate(90deg); }
+  details.tab summary:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: -2px; }
+  .tab .n { display: block; font-size: 1.2rem; color: var(--gold-soft); letter-spacing: .04em; }
+  .tab .d { display: block; color: var(--muted); font-size: .98rem; }
+  .tab .in { padding: 2px 20px 16px 44px; border-top: 1px solid var(--edge); }
+  .tab .in p { margin: 12px 0 0; color: var(--text); }
+  .tab .in ul { margin: 12px 0 0; padding-left: 18px; color: var(--text); }
+  .tab .in li { margin: 6px 0; }
+  .tab .in b { font-weight: normal; color: var(--gold-soft); }
+  .sub-label { text-align: center; margin: 26px 0 12px; font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+
+  .note {
+    max-width: 800px; margin: 22px auto 0; padding: 16px 20px; border: 1px solid var(--gold); border-radius: 14px;
+    background: linear-gradient(180deg, rgba(212,169,79,.10), rgba(24,28,38,.95) 60%), var(--panel);
+    box-shadow: 0 0 24px rgba(212,169,79,.14); text-align: center; color: var(--text);
+  }
+  .note b { font-weight: normal; color: var(--gold-soft); }
+  .faq { max-width: 800px; margin: 0 auto; display: grid; gap: 10px; }
+
+  .cta {
+    margin-top: 48px; text-align: center; padding: 30px 22px 28px; border-radius: 18px;
+    background: linear-gradient(180deg, rgba(212,169,79,.10), rgba(24,28,38,.95) 45%), var(--panel);
+    border: 1px solid var(--gold); box-shadow: 0 0 0 1px rgba(212,169,79,.25), 0 0 38px rgba(212,169,79,.20);
+  }
+  .cta h2 { margin-bottom: 6px; }
+  .cta p { max-width: 560px; margin: 0 auto 18px; color: var(--muted); }
+  .btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .btn {
+    display: inline-block; text-decoration: none; padding: 12px 28px; border-radius: 999px; border: 1px solid var(--gold);
+    color: var(--gold-soft); font-size: 1.02rem; letter-spacing: .05em; background: rgba(212,169,79,.08);
+  }
+  .btn:hover, .btn:focus-visible { box-shadow: 0 0 22px rgba(212,169,79,.4); }
+  footer { text-align: center; padding-top: 28px; color: var(--muted); font-size: .9rem; }
+  @media (max-width: 800px) { .offer { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">&larr; Back to home</a>
+
+  <div class="banner"><img src="images/toolbox-banner.jpg" alt="Rafter Cat's RP Toolbox: User Guide and Documentation"></div>
+  <div class="sect-rule" aria-hidden="true"></div>
+
+  <nav class="jump" aria-label="On this page">
+    <a href="#what">What it is</a><a href="#start">Getting started</a><a href="#main">The main window</a><a href="#rp">The RP tab</a><a href="#extras">Handy extras</a><a href="#faq">Questions</a>
+  </nav>
+
+  <section id="what">
+    <p class="eyebrow">The toolbox</p>
+    <h2>What it is</h2>
+    <p class="lead">Rafter Cat's RP Toolbox is a small plugin for Final Fantasy XIV that gives our role-play things to hold, wear, find, send and fight with. Items, gear, profiles, stashes, quests, mail, combat and group play, all in one window beside the game.</p>
+    <p class="lead muted">It never plays the game for you. It only reads simple things like where you are standing, so a sign knows you are near it. Game NPCs are just triggers for quests, and everything else happens in the plugin's own windows. It is free to use, and everything in it is for RP only.</p>
+    <div class="offer"><div class="tile"><h3>Items &amp; crafting</h3><p>RP-only items, stacks, reagents that combine, locked boxes and items that hold items.</p></div><div class="tile"><h3>Gear &amp; armory</h3><p>Wear gear, show it off, and watch it break with use.</p></div><div class="tile"><h3>Profiles</h3><p>A character card that appears when someone mouses over you.</p></div><div class="tile"><h3>World of finds</h3><p>Stashes, signs and pickups you leave in the real world, shown only when you stand near them.</p></div><div class="tile"><h3>Statuses</h3><p>Buffs, debuffs, sicknesses and curses with a diagnosis system.</p></div><div class="tile"><h3>Quests</h3><p>Story quests that run on their own, with fights and place-based steps.</p></div><div class="tile"><h3>Combat &amp; duels</h3><p>Server-rolled dice, shared encounters and player-versus-player fights.</p></div><div class="tile"><h3>Mail &amp; bank</h3><p>Letters, parcels and an RP currency with a banker.</p></div><div class="tile"><h3>Parties</h3><p>Group RP pop-ups and quests that move together.</p></div></div>
+    <div class="note"><b>Currently in private testing.</b> The plugin is being tested by a small group before it opens to the free company. This guide shows what is coming and how simple it is to use.</div>
+  </section>
+
+  <section id="start">
+    <p class="eyebrow">First time</p>
+    <h2>Getting started</h2>
+    <p class="lead muted">It takes about a minute. You do not need to learn anything first, since each tab explains itself as you open it.</p>
+    <ol class="steps">
+      <li><b>Install the plugin.</b> Members are given the install address and a short walkthrough when it opens up.</li>
+      <li><b>Open it.</b> Click the <b>Kinship</b> entry in the top bar of the game, or use the plugin's command. The main window opens.</li>
+      <li><b>Register on the RP tab.</b> Type your character's name and the member password your free company gave you.</li>
+      <li><b>Save your recovery code.</b> One code covers all of your characters. Write it down. It is the only way back in if you reinstall or move computers.</li>
+      <li><b>Start playing.</b> Each of your characters has its own items, gold and quests, so alts never mix.</li>
+    </ol>
+  </section>
+
+  <section id="main">
+    <p class="eyebrow">Tab by tab</p>
+    <h2>The main window</h2>
+    <p class="lead muted">Click any tab below to open it.</p>
+    <div class="tabs"><details class="tab"><summary><span class="n">Home</span><span class="d">The front door. Shows the Kinship crest, our tagline and a short welcome, plus the current plot and announcements.</span></summary><div class="in"><p><b>How to use it:</b> Nothing to set up. Open the window and it is the first thing you see.</p></div></details><details class="tab"><summary><span class="n">About</span><span class="d">The "Start Here" story: who we are, what we offer, how we are led, our sects, an example plot and how to join.</span></summary><div class="in"><p><b>How to use it:</b> Read it top to bottom. It is the same story as the website, inside the game.</p></div></details><details class="tab"><summary><span class="n">Roster</span><span class="d">Everyone in the Kinship in one place. Sort by sect, rank or A to Z. Each card shows a portrait, race, age, a short bio and a link to their Carrd.</span></summary><div class="in"><p><b>How to use it:</b> Click a person to open their profile. Press <b>Armory</b> on a profile to see what that character is wearing.</p></div></details><details class="tab"><summary><span class="n">Announcements</span><span class="d">The same news the website shows, so you never miss a plot update or event.</span></summary><div class="in"><p><b>How to use it:</b> It updates by itself from our shared sheet. Just read.</p></div></details><details class="tab"><summary><span class="n">Plots</span><span class="d">What is going on in the story right now, and plots that are active for members to join.</span></summary><div class="in"><p><b>How to use it:</b> Open a plot to read the summary and how to get involved.</p></div></details><details class="tab"><summary><span class="n">Sects</span><span class="d">The four sects each have a private page for their members.</span></summary><div class="in"><p><b>How to use it:</b> Pick your sect and enter the sect password your leader gave you. Everyone else just sees that the page is locked.</p></div></details><details class="tab"><summary><span class="n">RP</span><span class="d">The big one. Everything personal to your character lives here: inventory, gear, profile, stashes, signs, world items, status, bank, mail, quests, fights, combat and parties. Each has its own section below.</span></summary><div class="in"><p><b>How to use it:</b> Register once with your character's name and the member password, and write down your recovery code. After that you are signed in on that computer.</p></div></details><details class="tab"><summary><span class="n">SM Tools</span><span class="d">The control room for story-masters (Advocates) and bankers. Each section asks for its own password, so everyone else simply cannot use it.</span></summary><div class="in"><p><b>How to use it:</b> Only if you run the story or the bank.</p></div></details><details class="tab"><summary><span class="n">Guest</span><span class="d">For visitors. Join a combat encounter or a party with only an invite link or code and a name. No registration.</span></summary><div class="in"><p><b>How to use it:</b> Paste the link or code, type a name, join.</p></div></details><details class="tab"><summary><span class="n">Settings</span><span class="d">Switch things on or off: the plot notice, the top bar button, stash pop-ups, name labels in the world, crest size and the login reminder.</span></summary><div class="in"><p><b>How to use it:</b> Tick what you like and untick what you do not.</p></div></details></div>
+  </section>
+
+  <section id="rp">
+    <p class="eyebrow">Inside the RP tab</p>
+    <h2>Everything for your character</h2>
+    <p class="lead muted">Once you are signed in on the RP tab, these are the sections along the top.</p>
+    <div class="tabs"><details class="tab"><summary><span class="n">Inventory</span><span class="d">Your RP-only items: not real game items, just things for your story. Each has an icon, a name, a description and flavor text.</span></summary><div class="in"><ul><li>Make an item, pick an icon, and write what it is. Items stack up to 10 to a slot.</li><li>An item can say something when used, need a key item before it opens, hold other items inside it, or start a quest.</li><li>Give items to other players, delete them, or leave them in a stash.</li><li><b>Reagents:</b> some items combine into new ones, like three herbs becoming an antidote, with an optional chance of failure.</li></ul></div></details><details class="tab"><summary><span class="n">Armory</span><span class="d">Wearable RP gear. Slots for helm, chest, cloak, legs, feet, two rings, a necklace and a weapon.</span></summary><div class="in"><ul><li>Wear an item from your inventory and it shows in the slot. Other players can look at your gear from the Roster.</li><li>Gear can carry small attack and heal bonuses (kept to a total cap) that count in combat.</li><li>Gear can break after a set time worn, so it is not forever.</li></ul></div></details><details class="tab"><summary><span class="n">Profile</span><span class="d">Your RP profile: display name, age, race, gender, a portrait link, an "At first glance" line, OOC notes and up to 6 custom fields.</span></summary><div class="in"><ul><li>Fill in what you want people to see.</li><li>Other players see it as a card when they mouse over you in the game. It can follow your mouse or sit in a spot you choose.</li></ul></div></details><details class="tab"><summary><span class="n">Stashes</span><span class="d">A hiding place you leave on the map for others to find, or keep for yourself.</span></summary><div class="in"><ul><li>Stand where you want it, press use this location, name it and put items or gold in it.</li><li>It only shows up for people standing near it, or for you. It works in houses, apartments and duties.</li><li>Locked stashes need a key or a word to open.</li></ul></div></details><details class="tab"><summary><span class="n">Signs</span><span class="d">A message left in the world, like a notice board or a carved warning.</span></summary><div class="in"><ul><li>Stand somewhere, write the sign and place it. Anyone near it sees it appear as a small window.</li><li>A sign can also leave gold under it for the first reader.</li></ul></div></details><details class="tab"><summary><span class="n">World</span><span class="d">Things lying around in the world for anyone to pick up, like a frost herb by a tree, or a cookie on a table.</span></summary><div class="in"><ul><li>Stand where you want it, pick one of your items and name how it looks. Choose how it works: <b>once</b> (first person takes it), <b>wait</b> (it comes back after the minutes you set, like a game respawn) or <b>always</b>.</li><li>Anyone who walks right up to it gets a window with a Pick up button. They get a copy of the item. Perfect for gathering herbs together for a cure.</li></ul></div></details><details class="tab"><summary><span class="n">Status</span><span class="d">Buffs and debuffs for your character, shown on a little bar. Up to 6 at a time, timed or until removed.</span></summary><div class="in"><ul><li>Items, quests and story-masters can give you one. You can add some for yourself.</li><li>A status can change your combat rolls, or be a sickness or a curse that someone must diagnose or read before it can be cured.</li><li><b>Combat Buff / Combat Debuff</b> are two summary entries that add up every bonus from your statuses, items and worn gear.</li></ul></div></details><details class="tab"><summary><span class="n">Bank</span><span class="d">Gold is the RP currency. It is earned in fights and quests, found in the world or paid for jobs.</span></summary><div class="in"><ul><li>See your balance and history.</li><li>Bankers can give or take gold with the bank password.</li></ul></div></details><details class="tab"><summary><span class="n">Mail</span><span class="d">Letters and parcels between characters, even when the other person is offline.</span></summary><div class="in"><ul><li>Send a subject, a message, a short description like "a sealed envelope", gold and up to 3 item stacks.</li><li>Send it anonymously if you like. Recall it until it is opened. Mail that is not collected returns to the sender after 30 days.</li><li>A number on the tab shows unread mail.</li></ul></div></details><details class="tab"><summary><span class="n">Quests</span><span class="d">Story quests that run by themselves, with no story-master online. Game NPCs are only triggers; everything plays out in plugin windows.</span></summary><div class="in"><ul><li>Steps can be: talk to someone, hand over an item, receive an item, look, listen or search at a place, walk into an area, or fight.</li><li>Quests can start by finding a spot, walking into an area, or using an item. Words can change with your gender or a status.</li><li>Area notices pop up when you walk into a place, whatever step you are on.</li></ul></div></details><details class="tab"><summary><span class="n">Fight</span><span class="d">Pick a fight with another registered player.</span></summary><div class="in"><ul><li>Challenge someone. They accept or refuse. Both press attack or heal in turns until one wins.</li><li>The winner gets a "Won a fight" status and the loser "Lost a fight" for 10 minutes.</li></ul></div></details><details class="tab"><summary><span class="n">Combat</span><span class="d">Join and run Kinship Combat encounters inside the plugin: classic, last one standing, 1v1 spar and timed.</span></summary><div class="in"><ul><li>Dice are rolled by the server, so nobody can fudge a roll. Your gear and statuses add their bonuses.</li><li>An "Encounter over" summary shows the result and any loot.</li></ul></div></details><details class="tab"><summary><span class="n">Party</span><span class="d">Group RP and group quests. Anyone can start a party, share its code and send pop-ups to the whole group or chosen people.</span></summary><div class="in"><ul><li>Join with the code you were given. Pop-ups appear on your screen and stay off until you join.</li><li><b>Group quests:</b> when you are in a party, quest steps are shared. If one person completes a step, everyone in the party on the same quest and step moves on too, rewards included.</li></ul></div></details></div>
+  </section>
+
+  <section id="extras">
+    <p class="eyebrow">Good to know</p>
+    <h2>Handy extras</h2>
+    <div class="offer">
+      <div class="tile"><h3>Top bar button</h3><p>A "Kinship" entry in the game's top bar. Left click opens the window, right click opens quick options.</p></div>
+      <div class="tile"><h3>Mouse-over cards</h3><p>Hover over another player to see their RP profile card, with their portrait and what they chose to share.</p></div>
+      <div class="tile"><h3>Status bar</h3><p>A small movable bar showing your own buffs and debuffs, like the game's own.</p></div>
+      <div class="tile"><h3>Pause button</h3><p>Not RPing? Press Pause at the top of the window and the plugin stops talking to the server until you turn it back on.</p></div>
+      <div class="tile"><h3>Quiet when idle</h3><p>If you stand still and leave the mouse alone for a few minutes, the plugin goes quiet and wakes the moment you move.</p></div>
+      <div class="tile"><h3>Report a bug</h3><p>The <b>?</b> in the title bar opens About, with links and a form to report a bug or abuse.</p></div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <p class="eyebrow">Questions</p>
+    <h2>Good questions</h2>
+    <div class="faq">
+      <details class="tab"><summary><span class="n">Does it play the game for me?</span></summary><div class="in"><p>No. It does not control your character or automate anything. It only reads a little game information, like where you are standing, and shows its own windows.</p></div></details>
+      <details class="tab"><summary><span class="n">Do I have to be online for someone to send me something?</span></summary><div class="in"><p>No. Mail and gifts wait for you, and quests run on their own. You see them next time you open the plugin.</p></div></details>
+      <details class="tab"><summary><span class="n">Are these items real game items or gold?</span></summary><div class="in"><p>No. Everything is RP-only and has no value outside our story. Nothing here affects your real inventory or your Gil.</p></div></details>
+      <details class="tab"><summary><span class="n">Can other people see everything about me?</span></summary><div class="in"><p>No. Others only see what you put on your profile. Stashes and signs only appear to people standing near them, and your own things are yours alone.</p></div></details>
+      <details class="tab"><summary><span class="n">Do I need to be in the Kinship?</span></summary><div class="in"><p>Members register with the member password. Visitors can still join a combat encounter or a party with just a link or code, using the Guest tab.</p></div></details>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Want in?</h2>
+    <p>The toolbox is for members of The Kinship. Come and see what we are about.</p>
+    <div class="btns"><a class="btn" href="explore.html">About the free company</a><a class="btn" href="index.html">Back to home</a></div>
+  </div>
+
+  <footer>The Kinship &middot; Crystal / Mateus</footer>
+</div>
+</body>
+</html>
