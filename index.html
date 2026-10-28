@@ -360,6 +360,7 @@ function enableCard(id, href, external) {
 async function main() {
   enableCard("cardKin", PAGES.kin);
   enableCard("cardSects", PAGES.sects);
+  enableCard("cardJoin", "apply.html");
   enableCard("cardCombat", COMBAT_URL, true);
 
   try {
@@ -385,8 +386,7 @@ async function main() {
     if (d.announcements) { news.textContent = d.announcements; news.classList.remove("empty"); }
     else { news.textContent = "No announcements right now. Check back soon."; news.classList.add("empty"); }
 
-    const join = safeUrl(d.application_url);
-    if (join) enableCard("cardJoin", join, true);
+    // the Join card opens our own application form (apply.html)
 
     if (d.contact_email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.contact_email)) {
       $("mail").href = "mailto:" + d.contact_email; $("mail").textContent = d.contact_email;

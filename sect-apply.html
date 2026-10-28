@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apply to a Sect | The Kinship</title>
+<meta name="description" content="Apply to join one of the four sects of The Kinship.">
+<link rel="stylesheet" href="kinship.css">
+<link rel="stylesheet" href="form.css">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="pill" href="index.html">&larr; Back to home</a>
+    <a class="pill" href="explore.html">About the free company</a>
+  </nav>
+
+  <header class="hero">
+    <div class="emblem"><img src="images/sects-emblem.jpg" alt=""></div>
+    <h1>Apply to a Sect</h1>
+    <p class="sub">Kin only. Tell us why you are called to a sect.</p>
+    <div class="rule" aria-hidden="true"></div>
+  </header>
+
+  <div class="fwrap">
+    <p class="intro" style="margin-bottom:22px">Sect applications are for people who are already part of the Kinship. Fields marked <span class="req">*</span> are required.</p>
+    <div class="thanks" id="thanks" hidden>
+      <h2>Thank you!</h2>
+      <p id="thanksText"></p>
+      <p><a class="pill" href="index.html">Back to home</a></p>
+    </div>
+    <form class="fform" id="appForm" novalidate>
+      <div class="trap" aria-hidden="true"><label>Leave this box empty <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+      <section class="fpanel sects">
+        <h2>Your sect application</h2>
+        <div class="field"><label for="ign">In-game name<span class="req">*</span></label><input type="text" id="ign" name="In-game name" required maxlength="60" autocomplete="off"></div>
+        <div class="row2">
+          <div class="field"><label for="dc">Data center<span class="req">*</span></label><select id="dc" name="Data center" required></select></div>
+          <div class="field"><label for="world">Home world<span class="req">*</span></label><select id="world" name="Home world" required></select></div>
+        </div>
+        <div class="field"><label for="discord">Discord username</label><input type="text" id="discord" name="Discord username" maxlength="60" autocomplete="off"></div>
+        <div class="field"><label for="sect">Which sect are you applying for?<span class="req">*</span></label><select id="sect" name="Sect applying for" required></select></div>
+        <div class="field"><label for="why">Why are you applying to this sect?<span class="req">*</span></label><textarea id="why" name="Why this sect" required maxlength="2500"></textarea></div>
+        <div class="field"><span class="lbl">Are you, or have you been, a member of another sect?<span class="req">*</span></span><div class="opts"><label class="opt"><input type="radio" name="Member of another sect" value="Yes" required> Yes</label><label class="opt"><input type="radio" name="Member of another sect" value="No"> No</label></div>
+          <div class="sub" id="otherBox" hidden><label for="othersect" class="hint">Which sect?</label><input type="text" id="othersect" name="Other sect" maxlength="120" data-reqwhen="1"></div></div>
+        <div class="field"><label for="howlong">How long have you been a member of the Kinship?<span class="req">*</span></label><input type="text" id="howlong" name="Time in the Kinship" required maxlength="80" placeholder="For example: 3 months"></div>
+      </section>
+
+      <div class="msg err" id="formErr" role="alert" hidden></div>
+      <div class="submit">
+        <button class="send" type="submit">Send application</button>
+        <p class="privacy">Your answers are emailed to the Kinship's leaders and nowhere else. We use a form service to deliver them. Please don't include passwords or personal details you wouldn't want to share.</p>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="forms.js"></script>
+<script>
+worldPicker("dc", "world");
+sectPicker("sect");
+toggleOn("Member of another sect", "otherBox", v => v === "Yes");
+wireForm("appForm", FORM_KEYS.sect, "Sect application", "In-game name");
+$("thanksText").textContent = "Your sect application has been sent. A leader of that sect will be in touch.";
+</script>
+</body>
+</html>

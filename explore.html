@@ -381,10 +381,9 @@
     <h2>Come find your place with us</h2>
     <p>If The Kinship sounds like home, send us a message or head straight to the application.</p>
     <div class="btns">
-      <a class="btn primary off" id="applyBtn" href="#" aria-disabled="true">Apply to join</a>
+      <a class="btn primary" id="applyBtn" href="apply.html">Apply to join</a>
       <a class="btn" id="contactBtn" href="mailto:Thekinship.ffxiv@gmail.com">Contact us</a>
     </div>
-    <p class="tiny" id="applyNote">The application opens soon. Contact us in the meantime.</p>
   </section>
 
   <footer>
@@ -425,12 +424,6 @@ async function main() {
     const d = {};
     rows.slice(1).forEach(r => { d[(r[0] || "").trim().toLowerCase()] = (r[1] || "").trim(); });
 
-    if (/^https?:\/\//i.test(d.application_url || "")) {
-      const a = $("applyBtn");
-      a.href = d.application_url; a.target = "_blank"; a.rel = "noopener";
-      a.classList.remove("off"); a.removeAttribute("aria-disabled");
-      $("applyNote").hidden = true;
-    }
     if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.contact_email || "")) {
       $("contactBtn").href = "mailto:" + d.contact_email;
     }

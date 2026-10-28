@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join the Alpha Test | The Kinship</title>
+<meta name="description" content="Sign up to help test Rafter Cat's RP Toolbox, the Kinship's in-game RP plugin. Limited spots.">
+<link rel="stylesheet" href="kinship.css">
+<link rel="stylesheet" href="form.css">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="pill" href="index.html">&larr; Back to home</a>
+    <a class="pill" href="explore.html">About the free company</a>
+  </nav>
+
+  <header class="hero">
+    <div class="emblem"><img src="images/toolbox-icon.jpg" alt="" style="border-radius:22px"></div>
+    <h1>Join the Alpha Test</h1>
+    <p class="sub">Help us test the toolbox before it opens to everyone.</p>
+    <div class="rule" aria-hidden="true"></div>
+  </header>
+
+  <div class="fwrap">
+    <div style="text-align:center;margin-bottom:22px">
+      <p class="intro">Rafter Cat's RP Toolbox is our in-game RP plugin. Before it opens to everyone, a small group of trusted players is testing it. Want to help? Take a look at the <a href="guide.html" style="color:var(--gold-soft)">plugin guide</a>, then tell us a little about yourself.</p>
+      <span class="spots" id="spots" hidden></span>
+    </div>
+    <div class="msg err" id="closedMsg" hidden style="border-color:var(--gold);background:rgba(212,169,79,.08);color:var(--text)">Sign-ups are closed for now. Check back, or follow along in the Kinship announcements.</div>
+    <div class="thanks" id="thanks" hidden>
+      <h2>Thank you!</h2>
+      <p id="thanksText"></p>
+      <p><a class="pill" href="index.html">Back to home</a></p>
+    </div>
+    <form class="fform" id="appForm" novalidate>
+      <div class="trap" aria-hidden="true"><label>Leave this box empty <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+      <section class="fpanel">
+        <h2>About you</h2>
+        <div class="field"><label for="ign">In-game name<span class="req">*</span></label><input type="text" id="ign" name="In-game name" required maxlength="60" autocomplete="off"></div>
+        <div class="row2">
+          <div class="field"><label for="dc">Data center<span class="req">*</span></label><select id="dc" name="Data center" required></select></div>
+          <div class="field"><label for="world">Home world<span class="req">*</span></label><select id="world" name="Home world" required></select></div>
+        </div>
+        <div class="field"><label for="discord">Discord username<span class="req">*</span></label><span class="hint">Accepted testers are invited to the testers' Discord.</span><input type="text" id="discord" name="Discord username" required maxlength="60" autocomplete="off"></div>
+        <div class="field"><label for="heard">How did you hear about the alpha test?<span class="req">*</span></label><input type="text" id="heard" name="How they heard" required maxlength="200"></div>
+        <div class="field"><label for="why">Why do you want to join?<span class="req">*</span></label><textarea id="why" name="Why they want to join" required maxlength="2500"></textarea></div>
+      </section>
+      <section class="fpanel sects">
+        <h2>Before you send</h2>
+        <label class="agree"><input type="checkbox" name="Honest and respectful feedback" value="Yes" required><span>I agree to give honest feedback in a respectful manner. Criticism is welcome, as long as it is kind and constructive.</span></label>
+        <label class="agree"><input type="checkbox" name="Understands it is an alpha" value="Yes" required><span>I understand this is an ALPHA test, so it will not be perfect and will likely have problems. I agree to send screenshots and details about any bugs or issues I find, through the testers' Discord or the plugin's report section.</span></label>
+      </section>
+
+      <div class="msg err" id="formErr" role="alert" hidden></div>
+      <div class="submit">
+        <button class="send" type="submit">Send application</button>
+        <p class="privacy">Your answers are emailed to the Kinship's leaders and nowhere else. We use a form service to deliver them. Please don't include passwords or personal details you wouldn't want to share.</p>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="forms.js"></script>
+<script>
+worldPicker("dc", "world");
+wireForm("appForm", FORM_KEYS.alpha, "Alpha test sign-up", "In-game name");
+$("thanksText").textContent = "Your sign-up has been sent. If there is a spot for you, we will contact you on Discord with the next steps.";
+// Spots left come from the Google Sheet (Faction tab): alpha_spots_total, alpha_spots_taken and alpha_signup_open (yes / no).
+factionSheet().then(d => {
+  const total = parseInt(d.alpha_spots_total, 10) || 15, taken = parseInt(d.alpha_spots_taken, 10) || 0;
+  const left = Math.max(0, total - taken), closed = /^(no|off|false|0|closed)$/i.test(d.alpha_signup_open || "") || left === 0;
+  const s = $("spots");
+  if (closed) {
+    s.className = "spots full"; s.textContent = "The alpha test is full right now";
+    $("appForm").hidden = true;
+    $("closedMsg").hidden = false;
+  } else { s.innerHTML = "<b>" + left + "</b> of " + total + " spots open"; }
+  s.hidden = false;
+}).catch(() => { /* if the sheet cannot be read, the form still works */ });
+</script>
+</body>
+</html>
