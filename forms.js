@@ -5,8 +5,8 @@
 // ---------------------------------------------------------------------------------------------
 const FORM_KEYS = {
   fc:    "6406a0d6-e968-4356-a797-9586968410c7",
-  sect:  "PASTE-SECT-KEY-HERE",
-  alpha: "PASTE-ALPHA-KEY-HERE",
+  sect:  "9fd26629-8469-4852-aaf5-1f46dc509109",
+  alpha: "fd4d29f2-bc95-4488-9f7c-bca21863dbd3",
 };
 const CONTACT_EMAIL = "Thekinship.ffxiv@gmail.com";   // shown if something goes wrong
 // The Google Sheet (Faction tab) is also used by the Alpha page to show how many spots are left.
