@@ -28,7 +28,7 @@
       <p class="intro">Rafter Cat's RP Toolbox is our in-game RP plugin. Before it opens to everyone, a small group of trusted players is testing it. Want to help? Take a look at the <a href="guide.html" style="color:var(--gold-soft)">plugin guide</a>, then tell us a little about yourself.</p>
       <span class="spots" id="spots" hidden></span>
     </div>
-    <div class="msg err" id="closedMsg" hidden style="border-color:var(--gold);background:rgba(212,169,79,.08);color:var(--text)">Sign-ups are closed for now. Check back, or follow along in the Kinship announcements.</div>
+    <div class="msg err" id="closedMsg" hidden style="border-color:var(--gold);background:rgba(212,169,79,.08);color:var(--text)">All the alpha spots are taken right now. Join the waitlist below and we will contact you on Discord if a spot opens up.</div>
     <div class="thanks" id="thanks" hidden>
       <h2>Thank you!</h2>
       <p id="thanksText"></p>
@@ -64,7 +64,8 @@
 <script src="forms.js"></script>
 <script>
 worldPicker("dc", "world");
-wireForm("appForm", FORM_KEYS.alpha, "Alpha test sign-up", "In-game name");
+let waitlist = false;
+wireForm("appForm", FORM_KEYS.alpha, { toString: () => waitlist ? "Alpha test WAITLIST" : "Alpha test sign-up" }, "In-game name");   // the email subject says WAITLIST once the spots are full
 $("thanksText").textContent = "Your sign-up has been sent. If there is a spot for you, we will contact you on Discord with the next steps.";
 // Spots left come from the Google Sheet (Faction tab): alpha_spots_total, alpha_spots_taken and alpha_signup_open (yes / no).
 factionSheet().then(d => {
@@ -72,9 +73,13 @@ factionSheet().then(d => {
   const left = Math.max(0, total - taken), closed = /^(no|off|false|0|closed)$/i.test(d.alpha_signup_open || "") || left === 0;
   const s = $("spots");
   if (closed) {
+    // the test is full: the same form becomes a waitlist
+    waitlist = true;
     s.className = "spots full"; s.textContent = "The alpha test is full right now";
-    $("appForm").hidden = true;
     $("closedMsg").hidden = false;
+    const wl = document.createElement("input"); wl.type = "hidden"; wl.name = "Sign-up type"; wl.value = "WAITLIST"; $("appForm").append(wl);
+    const btn = document.querySelector("#appForm .send"); btn.textContent = "Join the waitlist"; btn.dataset.label = "Join the waitlist";
+    $("thanksText").textContent = "You are on the waitlist. If a spot opens up, we will contact you on Discord.";
   } else { s.innerHTML = "<b>" + left + "</b> of " + total + " spots open"; }
   s.hidden = false;
 }).catch(() => { /* if the sheet cannot be read, the form still works */ });
