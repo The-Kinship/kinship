@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The Kinship: Our Story</title>
+<meta name="description" content="Born of spite and sanctuary. The story of The Kinship, what we role-play and how we play.">
+<style>
+  :root {
+    --bg: #11141b;
+    --panel: #181c26;
+    --edge: #2c3242;
+    --text: #e9e6dc;
+    --muted: #a3a9b8;
+    --gold: #d4a94f;
+    --gold-soft: #f0d58a;
+    --purple: #8b5cf6;
+    --silver: #c4cad6;
+    --steel: #8fa6cf;
+    --green: #4f9d5d;
+    --red: #d9472b;
+    --sects: linear-gradient(90deg, var(--purple), var(--silver), var(--green), var(--red));
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(900px 520px at 0% 0%, rgba(139,92,246,.13), transparent 62%),
+      radial-gradient(900px 520px at 100% 0%, rgba(217,71,43,.10), transparent 62%),
+      radial-gradient(900px 600px at 0% 100%, rgba(79,157,93,.10), transparent 62%),
+      radial-gradient(900px 600px at 100% 100%, rgba(196,202,214,.06), transparent 62%),
+      var(--bg);
+    background-repeat: no-repeat;
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 22px 20px 48px; }
+
+  /* ---------- Top bar ---------- */
+  .back {
+    display: inline-block; text-decoration: none; color: var(--gold-soft);
+    font-size: .9rem; letter-spacing: .06em; padding: 6px 14px;
+    border: 1px solid var(--edge); border-radius: 999px; background: var(--panel);
+  }
+  .back:hover, .back:focus-visible { border-color: var(--gold); box-shadow: 0 0 16px rgba(212,169,79,.25); }
+
+  /* ---------- Hero ---------- */
+  .hero { text-align: center; padding: 10px 0 6px; }
+  .hero .emblem {
+    width: clamp(140px, 22vw, 210px); aspect-ratio: 1; margin: 0 auto 6px;
+    -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+            mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+  }
+  .hero .emblem img { width: 100%; height: 100%; display: block; object-fit: contain; mix-blend-mode: lighten; }
+  .hero h1 {
+    margin: 0; font-weight: normal; letter-spacing: .05em;
+    font-size: clamp(1.9rem, 4.6vw, 3rem); color: var(--gold-soft);
+    text-shadow: 0 2px 18px rgba(212,169,79,.28);
+  }
+  .hero .sub { margin: 4px 0 0; color: var(--muted); font-style: italic; font-size: 1.05rem; }
+  .sect-rule { height: 3px; border-radius: 3px; background: var(--sects); opacity: .85; margin: 18px auto 0; max-width: 760px; }
+
+  /* ---------- Jump links ---------- */
+  .jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 6px; }
+  .jump a {
+    text-decoration: none; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--muted); padding: 6px 14px; border: 1px solid var(--edge); border-radius: 999px; background: var(--panel);
+  }
+  .jump a:hover, .jump a:focus-visible { color: var(--gold-soft); border-color: var(--gold); }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 44px; }
+  .eyebrow { margin: 0; text-align: center; font-size: .78rem; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); }
+  h2 {
+    margin: 4px 0 18px; text-align: center; font-weight: normal;
+    font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--gold-soft);
+  }
+  .lead { max-width: 760px; margin: 0 auto 14px; text-align: center; color: var(--text); font-size: 1.12rem; }
+  .lead.muted { color: var(--muted); font-size: 1.02rem; }
+
+  /* ---------- What we offer ---------- */
+  .offer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+  .tile {
+    border: 1px solid var(--edge); border-radius: 14px; background: var(--panel);
+    padding: 22px 20px 20px; position: relative; overflow: hidden;
+  }
+  .tile::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--gold); }
+  .tile:nth-child(2)::before { background: linear-gradient(90deg, var(--gold), var(--purple)); }
+  .tile:nth-child(3)::before { background: linear-gradient(90deg, var(--gold), var(--green)); }
+  .tile h3 { margin: 0 0 6px; font-weight: normal; font-size: 1.2rem; color: var(--gold-soft); }
+  .tile p { margin: 0; color: var(--muted); }
+
+  /* ---------- Structure ladder ---------- */
+  .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px; }
+  .rung {
+    border: 1px solid var(--edge); border-radius: 14px; background: var(--panel);
+    padding: 18px 16px; text-align: center;
+  }
+  .rung .step { font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+  .rung h3 { margin: 4px 0 2px; font-weight: normal; font-size: 1.3rem; color: var(--gold-soft); }
+  .rung .role { margin: 0; color: var(--text); font-style: italic; }
+  .rung .desc { margin: 8px 0 0; color: var(--muted); font-size: .95rem; }
+  .rung.top {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(212,169,79,.12), rgba(24,28,38,.95) 70%), var(--panel);
+    box-shadow: 0 0 24px rgba(212,169,79,.18);
+  }
+
+  /* ---------- Sects ---------- */
+  .sects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 24px; }
+  .sect {
+    --c: var(--gold);
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+    border: 1px solid var(--edge); border-radius: 16px; background: var(--panel);
+    padding: 22px 22px 20px;
+  }
+  .sect::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); }
+  .sect::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(420px 220px at 0% 0%, color-mix(in srgb, var(--c) 16%, transparent), transparent 70%);
+  }
+  .sect > * { position: relative; z-index: 1; }
+  .sect.onyx { --c: var(--purple); }
+  .sect.vanguard { --c: var(--steel); }
+  .sect.lifewatch { --c: var(--green); }
+  .sect.ember { --c: var(--red); }
+  .sect .head { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .sect .head img {
+    width: 104px; height: 104px; flex: 0 0 104px; object-fit: contain; border-radius: 50%;
+    filter: drop-shadow(0 4px 14px color-mix(in srgb, var(--c) 45%, transparent));
+  }
+  .sect h3 { margin: 0; font-weight: normal; font-size: 1.45rem; color: var(--gold-soft); line-height: 1.2; }
+  .sect .leader { margin: 4px 0 0; font-size: .92rem; color: var(--muted); }
+  .sect .leader b { font-weight: normal; color: var(--c); letter-spacing: .04em; }
+  .sect p.body { margin: 0 0 10px; color: var(--text); }
+  .sect .for { margin: 0 0 8px; font-size: .95rem; color: var(--muted); }
+  .sect .for b, .sect .eg b {
+    display: block; font-weight: normal; font-size: .68rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--c); margin-bottom: 2px;
+  }
+  .sect .quiet { margin: 0 0 10px; font-size: .92rem; font-style: italic; color: var(--muted); }
+  .sect .eg { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--edge); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .chip {
+    font-size: .82rem; color: var(--text); padding: 2px 11px; border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--c) 55%, var(--edge));
+    background: color-mix(in srgb, var(--c) 10%, transparent);
+  }
+  .closing { max-width: 760px; margin: 26px auto 0; text-align: center; color: var(--muted); font-size: 1.05rem; }
+
+
+  /* ---------- Join CTA ---------- */
+  .cta {
+    margin-top: 48px; text-align: center; padding: 30px 22px 28px; border-radius: 18px;
+    background: linear-gradient(180deg, rgba(212,169,79,.10), rgba(24,28,38,.95) 45%), var(--panel);
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 0 1px rgba(212,169,79,.25), 0 0 38px rgba(212,169,79,.20);
+  }
+  .cta h2 { margin-bottom: 6px; }
+  .cta p { max-width: 560px; margin: 0 auto 18px; color: var(--muted); }
+  .btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .btn {
+    display: inline-block; text-decoration: none; padding: 12px 28px; border-radius: 999px;
+    border: 1px solid var(--gold); color: var(--gold-soft); font-size: 1.02rem; letter-spacing: .05em;
+    background: rgba(212,169,79,.08); transition: background .2s, color .2s, box-shadow .2s;
+  }
+  .btn.primary { background: var(--gold); color: #1a1408; }
+  .btn:hover, .btn:focus-visible { box-shadow: 0 0 22px rgba(212,169,79,.4); }
+  .btn.primary:hover { background: var(--gold-soft); }
+  .btn.off { opacity: .55; pointer-events: none; }
+  .tiny { margin: 14px 0 0; font-size: .85rem; color: var(--muted); }
+
+  footer { text-align: center; padding-top: 28px; }
+  [hidden] { display: none !important; }
+
+  /* ---------- Narrower screens ---------- */
+  @media (max-width: 900px) {
+    .sects { grid-template-columns: 1fr; }
+    .ladder { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .offer { grid-template-columns: 1fr; }
+    .ladder { grid-template-columns: 1fr; }
+    .sect .head img { width: 84px; height: 84px; flex-basis: 84px; }
+    section { margin-top: 38px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  /* ---------- Story page ---------- */
+  .quote { max-width: 760px; margin: 0 auto; text-align: center; font-size: clamp(1.15rem, 2.4vw, 1.5rem); color: var(--gold-soft); font-style: italic; line-height: 1.5; }
+  .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 22px; }
+  .pillar { border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); padding: 22px 22px 20px; position: relative; overflow: hidden; }
+  .pillar::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--gold); }
+  .pillar .num { font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+  .pillar h3 { margin: 4px 0 6px; font-weight: normal; font-size: 1.25rem; color: var(--gold-soft); }
+  .pillar p { margin: 0; color: var(--muted); }
+  .rules { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 22px; }
+  .rule { grid-column: span 2; }
+  .rule:nth-child(4) { grid-column: 2 / span 2; }
+  .rule { border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); padding: 16px 18px; }
+  .rule h3 { margin: 0 0 4px; font-weight: normal; font-size: 1.08rem; color: var(--gold-soft); }
+  .rule p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .sect .body { margin-bottom: 12px; }
+  .cta .quote { margin-bottom: 8px; }
+  @media (max-width: 900px) { .rules { grid-template-columns: 1fr 1fr; } .rule, .rule:nth-child(4) { grid-column: auto; } }
+  @media (max-width: 700px) { .pillars, .rules { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">&larr; Back to home</a>
+
+  <header class="hero">
+    <div class="emblem"><img src="images/kin-emblem.jpg" alt="The Kinship emblem"></div>
+    <h1>The Kinship</h1>
+    <p class="sub">Born of Spite and Sanctuary</p>
+    <div class="sect-rule" aria-hidden="true"></div>
+    <nav class="jump" aria-label="On this page">
+      <a href="#house">The house</a>
+      <a href="#promises">Four promises</a>
+      <a href="#kin">Kin</a>
+      <a href="#sects">The sects</a>
+      <a href="#play">How we play</a>
+    </nav>
+  </header>
+
+  <section id="house">
+    <p class="eyebrow">Our story</p>
+    <h2>The family you choose</h2>
+    <p class="lead">The Grand Companies want your sword for their wars. The Syndicates want your coin for their pockets. We want neither.</p>
+    <p class="lead muted">The Kinship is a privately funded sanctuary for the displaced, the disillusioned and the exceptionally talented. It stands in the sprawling Embershade Estate, a mansion left behind by the late Maelstrom Lieutenant Embershade, a man who dreamed of a place where the forgotten could finally rest. We bow to no city-state and answer to no official ledger.</p>
+    <p class="lead muted">Whether you are running from a past you would rather forget, looking to study arts the authorities fear, or simply want a roof and a warm hearth, there is a place for you here.</p>
+  </section>
+
+  <section id="promises">
+    <p class="eyebrow">Beneath the Embershade roof</p>
+    <h2>Four promises</h2>
+    <div class="pillars">
+      <div class="pillar"><span class="num">I</span><h3>The price of admission is nothing</h3><p>We do not want your gil, your sword or your service. The Harbinger provides this roof, this food and this safety as a gift, not a transaction.</p></div>
+      <div class="pillar"><span class="num">II</span><h3>Absolute autonomy</h3><p>Your life is your own. You are free to remain simply Kin. If enemies beat against our gates and you lock yourself in your chamber until the storm passes, so be it. You will not be shamed, and you will not be cast out.</p></div>
+      <div class="pillar"><span class="num">III</span><h3>The willing shield</h3><p>Protection is a choice, never a mandate. Those in the Iron Vanguard stand between you and the threat because they chose to, not out of duty or law.</p></div>
+      <div class="pillar"><span class="num">IV</span><h3>The sanctuary rule</h3><p>This house asks only one thing in return: respect the sanctuary of others. Violence, theft or betrayal against a member under this roof breaks the peace, and whoever breaks the peace breaks the Kinship.</p></div>
+    </div>
+  </section>
+
+  <section id="kin">
+    <p class="eyebrow">Your first steps</p>
+    <h2>Everyone enters as Kin</h2>
+    <p class="lead">In character, you are granted absolute asylum under the Harbinger&rsquo;s roof. Your past stays at the door.</p>
+    <p class="lead muted">You are not expected to fight, to work or to perform. You are given a room, a warm meal and the fierce protection of everyone inside these walls. Stay Kin for as long as you like. When you are ready to lend your talents to the house, you may pledge to one of four sects.</p>
+  </section>
+
+  <section id="sects">
+    <p class="eyebrow">Choose your path</p>
+    <h2>The four sects</h2>
+    <div class="sects">
+
+      <article class="sect vanguard">
+        <div class="head"><img src="images/vanguard.jpg" alt="Iron Vanguard emblem" loading="lazy"><div><h3>The Iron Vanguard</h3></div></div>
+        <p class="body">The muscle and the shield. For the protectors, mercenaries and weary soldiers who want to fight for a family, not a flag. They run the patrols and keep the sanctuary safe.</p>
+        <div class="eg"><b>In a typical week</b>
+          <div class="chips"><span class="chip">The Iron Ring (sparring)</span><span class="chip">Perimeter patrols</span><span class="chip">Escort detail</span><span class="chip">Guard post</span></div>
+        </div>
+      </article>
+
+      <article class="sect lifewatch">
+        <div class="head"><img src="images/lifewatch.jpg" alt="Life Watch emblem" loading="lazy"><div><h3>The Life Watch</h3></div></div>
+        <p class="body">The medics and caretakers, born from the belief that no one should be left to suffer alone. They run our back-alley clinic, harvest rare herbs and mend those who flee to our doors.</p>
+        <div class="eg"><b>In a typical week</b>
+          <div class="chips"><span class="chip">Walk-in clinic night</span><span class="chip">Foraging runs</span><span class="chip">Brewing circle</span><span class="chip">Triage duty</span></div>
+        </div>
+      </article>
+
+      <article class="sect onyx">
+        <div class="head"><img src="images/onyx.jpg" alt="Onyx Blood Guard emblem" loading="lazy"><div><h3>The Onyx Blood Guard</h3></div></div>
+        <p class="body">The occult researchers and magical enforcers. Unshackled by rigid laws, they weave protective wards around the mansion, study ancient anomalies and keep our secrets hidden.</p>
+        <div class="eg"><b>In a typical week</b>
+          <div class="chips"><span class="chip">Weaving the wards</span><span class="chip">Lecture &amp; debate</span><span class="chip">Conduit calibration</span><span class="chip">Archive cataloging</span></div>
+        </div>
+      </article>
+
+      <article class="sect ember">
+        <div class="head"><img src="images/ember-court.jpg" alt="Ember Court emblem" loading="lazy"><div><h3>The Ember Court</h3></div></div>
+        <p class="body">The social heart and public face, named in honor of the Lieutenant. They run our upscale lounge, keep the coffers full, gather rumors from patrons and welcome new Kin.</p>
+        <div class="eg"><b>In a typical week</b>
+          <div class="chips"><span class="chip">Embershade Lounge night</span><span class="chip">Whisper networks</span><span class="chip">Courtly gala</span><span class="chip">Welcoming committee</span></div>
+        </div>
+      </article>
+
+    </div>
+    <p class="closing">The sects lean on one another. The Ember Court cheers from the benches at the Iron Ring, and the Life Watch hires the Vanguard to guard them in the wild.</p>
+  </section>
+
+  <section id="play">
+    <p class="eyebrow">Out of character</p>
+    <h2>How we play</h2>
+    <p class="lead">Heavy roleplay and casual socializing, all experience levels welcome. If you just want a chill, social family, you are welcome to stay Kin.</p>
+    <div class="rules">
+      <div class="rule"><h3>Consent is king</h3><p>Major developments such as permanent injury, romance, betrayal or death need everyone&rsquo;s out-of-character consent.</p></div>
+      <div class="rule"><h3>In character stays in character</h3><p>IC rivalries and arguments never reflect how players feel about each other.</p></div>
+      <div class="rule"><h3>No metagaming or powergaming</h3><p>Use only what your character would know, and let others react before deciding their outcome.</p></div>
+      <div class="rule"><h3>Rule of cool</h3><p>We follow the general lore of FFXIV, but we pick collaborative fun over lore-policing.</p></div>
+      <div class="rule"><h3>A safe space for all</h3><p>Bullying, harassment, hate speech or toxic behavior means immediate removal.</p></div>
+    </div>
+  </section>
+
+  <section class="cta" id="join">
+    <p class="quote">&ldquo;A house of morals and choices, and we never said they had to be good ones.&rdquo;</p>
+    <p>The world cast you out. The Kinship brings you in.</p>
+    <div class="btns">
+      <a class="btn primary" href="apply.html">Apply to join</a>
+      <a class="btn" href="explore.html">About the free company</a>
+    </div>
+  </section>
+
+  <footer>
+    <a class="back" href="index.html">&larr; Back to home</a>
+  </footer>
+</div>
+</body>
+</html>
