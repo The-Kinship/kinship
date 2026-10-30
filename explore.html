@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About The Kinship</title>
-<meta name="description" content="The Kinship is a heavy role-play free company on Crystal / Mateus. Learn how we're organized, what our four sects do, and how to join.">
+<meta name="description" content="The Kinship is a heavy role-play free company on Crystal / Mateus. Born of spite and sanctuary: our story, our four sects and how to join.">
 <style>
   :root {
     --bg: #11141b;
@@ -151,22 +151,6 @@
   }
   .closing { max-width: 760px; margin: 26px auto 0; text-align: center; color: var(--muted); font-size: 1.05rem; }
 
-  /* ---------- Example plot ---------- */
-  .plotfig { margin: 22px auto 0; max-width: 980px; }
-  .plotbtn {
-    display: block; width: 100%; padding: 0; cursor: zoom-in; background: none; color: inherit;
-    border: 1px solid var(--gold); border-radius: 14px; overflow: hidden;
-    box-shadow: 0 0 0 1px rgba(212,169,79,.2), 0 0 30px rgba(212,169,79,.18);
-  }
-  .plotbtn img { width: 100%; height: auto; display: block; }
-  .plotbtn:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
-  .plotfig figcaption { text-align: center; margin-top: 8px; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-  dialog.lightbox {
-    padding: 0; border: 1px solid var(--gold); border-radius: 12px; background: #0b0d12;
-    max-width: 96vw; max-height: 94vh; overflow: auto;
-  }
-  dialog.lightbox::backdrop { background: rgba(5,6,9,.88); }
-  dialog.lightbox img { display: block; width: min(1432px, 96vw); height: auto; cursor: zoom-out; }
 
   /* ---------- Join CTA ---------- */
   .cta {
@@ -207,6 +191,25 @@
     html { scroll-behavior: auto; }
     * { transition: none !important; }
   }
+
+  /* ---------- Story page ---------- */
+  .quote { max-width: 760px; margin: 0 auto; text-align: center; font-size: clamp(1.15rem, 2.4vw, 1.5rem); color: var(--gold-soft); font-style: italic; line-height: 1.5; }
+  .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 22px; }
+  .pillar { border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); padding: 22px 22px 20px; position: relative; overflow: hidden; }
+  .pillar::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--gold); }
+  .pillar .num { font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+  .pillar h3 { margin: 4px 0 6px; font-weight: normal; font-size: 1.25rem; color: var(--gold-soft); }
+  .pillar p { margin: 0; color: var(--muted); }
+  .rules { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 22px; }
+  .rule { grid-column: span 2; }
+  .rule:nth-child(4) { grid-column: 2 / span 2; }
+  .rule { border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); padding: 16px 18px; }
+  .rule h3 { margin: 0 0 4px; font-weight: normal; font-size: 1.08rem; color: var(--gold-soft); }
+  .rule p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .sect .body { margin-bottom: 12px; }
+  .cta .quote { margin-bottom: 8px; }
+  @media (max-width: 900px) { .rules { grid-template-columns: 1fr 1fr; } .rule, .rule:nth-child(4) { grid-column: auto; } }
+  @media (max-width: 700px) { .pillars, .rules { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -214,28 +217,28 @@
 
   <a class="back" href="index.html">&larr; Back to home</a>
 
-  <!-- ===== Hero ===== -->
   <header class="hero">
     <div class="emblem"><img src="images/kin-emblem.jpg" alt="The Kinship emblem"></div>
-    <h1>About The Kinship</h1>
-    <p class="sub">A heavy role-play free company on Crystal &middot; Mateus</p>
+    <h1>The Kinship</h1>
+    <p class="sub">Born of Spite and Sanctuary</p>
+    <p class="sub" style="font-size:.95rem;margin-top:2px">A heavy role-play free company on Crystal &middot; Mateus</p>
     <div class="sect-rule" aria-hidden="true"></div>
     <nav class="jump" aria-label="On this page">
-      <a href="#about">Who we are</a>
-      <a href="#offer">What we offer</a>
+      <a href="#house">Our story</a>
+      <a href="#plugin-only">Joining</a>
+      <a href="#promises">Four promises</a>
       <a href="#structure">How we're led</a>
       <a href="#sects">The sects</a>
-      <a href="#plot">Example plot</a>
-      <a href="#join">Join us</a>
+      <a href="#play">How we play</a>
     </nav>
   </header>
 
-  <!-- ===== Who we are ===== -->
-  <section id="about">
-    <p class="eyebrow">Who we are</p>
-    <h2>Quality RP over quantity</h2>
-    <p class="lead">The Kinship is a heavy RP free company that focuses on giving its members an in-depth, immersive, and inclusive RP environment to thrive in. We value quality RP over quantity of members.</p>
-    <p class="lead muted">Though we follow a very classic &ldquo;Misfit &amp; Kingdom&rdquo; style, we try to make sure our RP surpasses the standard, dull, repetitive RP tropes that seem to be everywhere.</p>
+  <section id="house">
+    <p class="eyebrow">Our story</p>
+    <h2>The family you choose</h2>
+    <p class="lead">The Grand Companies want your sword for their wars. The Syndicates want your coin for their pockets. We want neither.</p>
+    <p class="lead muted">The Kinship is a privately funded sanctuary for the displaced, the disillusioned and the exceptionally talented. It stands in the sprawling Embershade Estate, a mansion left behind by the late Maelstrom Lieutenant Embershade, a man who dreamed of a place where the forgotten could finally rest. We bow to no city-state and answer to no official ledger.</p>
+    <p class="lead muted">Whether you are running from a past you would rather forget, looking to study arts the authorities fear, or simply want a roof and a warm hearth, there is a place for you here.</p>
   </section>
 
   <!-- ===== Plugin-only ===== -->
@@ -247,6 +250,24 @@
       <p style="max-width:640px;margin:0 auto 10px;color:var(--text)">Our plugin is a self-contained RP system that connects everyone in game, whatever their in-game free company. That makes joining our official FC completely optional. Raiding hard in another free company? Part of a big social guild that does not roleplay? Stay right where you are and join The Kinship in game using just the plugin.</p>
       <p style="max-width:640px;margin:0 auto;color:var(--muted)">You get the same story, the same RP tools and the same community. The only differences are that plugin-only members do not get a room in the FC mansion, and use linkshells instead of the FC chat. Choose &ldquo;Just the plugin&rdquo; on the application.</p>
     </div>
+  </section>
+
+  <section id="promises">
+    <p class="eyebrow">Beneath the Embershade roof</p>
+    <h2>Four promises</h2>
+    <div class="pillars">
+      <div class="pillar"><span class="num">I</span><h3>The price of admission is nothing</h3><p>We do not want your gil, your sword or your service. The Harbinger provides this roof, this food and this safety as a gift, not a transaction.</p></div>
+      <div class="pillar"><span class="num">II</span><h3>Absolute autonomy</h3><p>Your life is your own. You are free to remain simply Kin. If enemies beat against our gates and you lock yourself in your chamber until the storm passes, so be it. You will not be shamed, and you will not be cast out.</p></div>
+      <div class="pillar"><span class="num">III</span><h3>The willing shield</h3><p>Protection is a choice, never a mandate. Those in the Iron Vanguard stand between you and the threat because they chose to, not out of duty or law.</p></div>
+      <div class="pillar"><span class="num">IV</span><h3>The sanctuary rule</h3><p>This house asks only one thing in return: respect the sanctuary of others. Violence, theft or betrayal against a member under this roof breaks the peace, and whoever breaks the peace breaks the Kinship.</p></div>
+    </div>
+  </section>
+
+  <section id="kin">
+    <p class="eyebrow">Your first steps</p>
+    <h2>Everyone enters as Kin</h2>
+    <p class="lead">In character, you are granted absolute asylum under the Harbinger&rsquo;s roof. Your past stays at the door.</p>
+    <p class="lead muted">You are not expected to fight, to work or to perform. You are given a room, a warm meal and the fierce protection of everyone inside these walls. Stay Kin for as long as you like. When you are ready to lend your talents to the house, you may pledge to one of four sects.</p>
   </section>
 
   <!-- ===== What we offer ===== -->
@@ -296,105 +317,68 @@
         <p class="desc">Free to join in any FC-wide plots and enjoy the FC as is.</p>
       </div>
     </div>
-    <p class="lead muted" style="margin-top:22px">Members enter our FC as Kin. If someone wishes to have a more catered RP experience, we have 4 sects (sections) members can join.</p>
   </section>
 
-  <!-- ===== Sects ===== -->
   <section id="sects">
-    <p class="eyebrow">Find your calling</p>
+    <p class="eyebrow">Choose your path</p>
     <h2>The four sects</h2>
-
     <div class="sects">
 
-      <article class="sect onyx">
-        <div class="head">
-          <img src="images/onyx.jpg" alt="Onyx Blood Guard emblem" loading="lazy">
-          <div>
-            <h3>The Onyx Blood Guard</h3>
-            <p class="leader">Sect Leader: <b>The Prefect</b></p>
-          </div>
-        </div>
-        <p class="body">Our magic section. It handles the research, study, and employment of all magical aspects for the FC.</p>
-        <p class="for"><b>Great for</b>Summoners, mages, warlocks, anyone interested in the occult, RPs with heavy magic.</p>
-        <p class="quiet">It also houses our darker, secret, underground taboo RP place that isn't public.</p>
-        <div class="eg"><b>Example RPs</b>
-          <div class="chips"><span class="chip">Ward casting</span><span class="chip">Magical research</span><span class="chip">Rituals</span><span class="chip">Charm creations</span></div>
-        </div>
-      </article>
-
       <article class="sect vanguard">
-        <div class="head">
-          <img src="images/vanguard.jpg" alt="Iron Vanguard emblem" loading="lazy">
-          <div>
-            <h3>The Iron Vanguard</h3>
-            <p class="leader">Sect Leader: <b>The Vanguard Commander</b></p>
-          </div>
-        </div>
-        <p class="body">Our military sect and peacekeepers. Heavy RP combat.</p>
-        <p class="for"><b>Great for</b>Anyone RPing a fighter, guard, or knight, or anyone whose main RP style is fighting.</p>
-        <div class="eg"><b>Example RPs</b>
-          <div class="chips"><span class="chip">Escorts</span><span class="chip">Patrols</span><span class="chip">Guarding</span><span class="chip">Sparring</span></div>
+        <div class="head"><img src="images/vanguard.jpg" alt="Iron Vanguard emblem" loading="lazy"><div><h3>The Iron Vanguard</h3><p class="leader">Sect Leader: <b>The Vanguard Commander</b></p></div></div>
+        <p class="body">The muscle and the shield. For the protectors, mercenaries and weary soldiers who want to fight for a family, not a flag. They run the patrols and keep the sanctuary safe.</p>
+        <div class="eg"><b>In a typical week</b>
+          <div class="chips"><span class="chip">The Iron Ring (sparring)</span><span class="chip">Perimeter patrols</span><span class="chip">Escort detail</span><span class="chip">Guard post</span></div>
         </div>
       </article>
 
       <article class="sect lifewatch">
-        <div class="head">
-          <img src="images/lifewatch.jpg" alt="Life Watch emblem" loading="lazy">
-          <div>
-            <h3>The Life Watch</h3>
-            <p class="leader">Sect Leader: <b>The Life Warden</b></p>
-          </div>
+        <div class="head"><img src="images/lifewatch.jpg" alt="Life Watch emblem" loading="lazy"><div><h3>The Life Watch</h3><p class="leader">Sect Leader: <b>The Life Warden</b></p></div></div>
+        <p class="body">The medics and caretakers, born from the belief that no one should be left to suffer alone. They run our back-alley clinic, harvest rare herbs and mend those who flee to our doors.</p>
+        <div class="eg"><b>In a typical week</b>
+          <div class="chips"><span class="chip">Walk-in clinic night</span><span class="chip">Foraging runs</span><span class="chip">Brewing circle</span><span class="chip">Triage duty</span></div>
         </div>
-        <p class="body">Our healing sect, for those whose main focus is the health and well-being of not only our members' bodies, but their minds as well.</p>
-        <p class="for"><b>Great for</b>Healers and combat medics. Healers don't stop at the physical, but can also help with mental health as well.</p>
-        <div class="eg"><b>Example RPs</b>
-          <div class="chips"><span class="chip">Medical screenings</span><span class="chip">Clinics</span><span class="chip">Resource gathering &amp; potion making</span><span class="chip">Healing after combat, like a patrol or a sparring session</span></div>
+      </article>
+
+      <article class="sect onyx">
+        <div class="head"><img src="images/onyx.jpg" alt="Onyx Blood Guard emblem" loading="lazy"><div><h3>The Onyx Blood Guard</h3><p class="leader">Sect Leader: <b>The Prefect</b></p></div></div>
+        <p class="body">The occult researchers and magical enforcers. Unshackled by rigid laws, they weave protective wards around the mansion, study ancient anomalies and keep our secrets hidden.</p>
+        <div class="eg"><b>In a typical week</b>
+          <div class="chips"><span class="chip">Weaving the wards</span><span class="chip">Lecture &amp; debate</span><span class="chip">Conduit calibration</span><span class="chip">Archive cataloging</span></div>
         </div>
       </article>
 
       <article class="sect ember">
-        <div class="head">
-          <img src="images/ember-court.jpg" alt="Ember Court emblem" loading="lazy">
-          <div>
-            <h3>The Ember Court</h3>
-            <p class="leader">Sect Leader: <b>The Baron / Baroness</b></p>
-          </div>
-        </div>
-        <p class="body">Strictly our social sect, designed to help push RP plots along, start and engage with new members in casual RP, and help new members find a sect to join. They plan events and social RPs: holiday events, birthdays, classic venue nights.</p>
-        <div class="eg"><b>Example RPs</b>
-          <div class="chips"><span class="chip">Planning a Halloween costume party</span><span class="chip">Hosting a venue night</span><span class="chip">Meeting new members for casual social RP</span></div>
+        <div class="head"><img src="images/ember-court.jpg" alt="Ember Court emblem" loading="lazy"><div><h3>The Ember Court</h3><p class="leader">Sect Leader: <b>The Baron / Baroness</b></p></div></div>
+        <p class="body">The social heart and public face, named in honor of the Lieutenant. They run our upscale lounge, keep the coffers full, gather rumors from patrons and welcome new Kin.</p>
+        <div class="eg"><b>In a typical week</b>
+          <div class="chips"><span class="chip">Embershade Lounge night</span><span class="chip">Whisper networks</span><span class="chip">Courtly gala</span><span class="chip">Welcoming committee</span></div>
         </div>
       </article>
 
     </div>
-
-    <p class="closing">Each sect plays a vital part in the overall RP of our free company, and each has a special place in our overall RP plots. This helps to ensure everyone is included in some way!</p>
+    <p class="closing">The sects lean on one another. The Ember Court cheers from the benches at the Iron Ring, and the Vanguard offers its blades to guard the Life Watch in the wild.</p>
   </section>
 
-  <!-- ===== Example plot ===== -->
-  <section id="plot">
-    <p class="eyebrow">See it in action</p>
-    <h2>Example RP plot &amp; sect involvement</h2>
-    <figure class="plotfig">
-      <button class="plotbtn" id="plotBtn" type="button" aria-label="Enlarge the example plot graphic">
-        <img src="images/plot-example.jpg" alt="The Kinship roleplay plot progression: 1. Vanguard Patrol. 2. Ambush and Discovery. 3. Triage and Report. 4. Occult Research. 5. Social Intrigue. 6. Council Conclave." loading="lazy">
-      </button>
-      <figcaption>Tap the image to enlarge</figcaption>
-    </figure>
-    <dialog class="lightbox" id="lightbox" aria-label="Example plot, enlarged">
-      <img src="images/plot-example.jpg" alt="The Kinship roleplay plot progression, enlarged">
-    </dialog>
+  <section id="play">
+    <p class="eyebrow">Out of character</p>
+    <h2>How we play</h2>
+    <p class="lead">Heavy roleplay and casual socializing, all experience levels welcome. If you just want a chill, social family, you are welcome to stay Kin.</p>
+    <div class="rules">
+      <div class="rule"><h3>Consent is king</h3><p>Major developments such as permanent injury, romance, betrayal or death need everyone&rsquo;s out-of-character consent.</p></div>
+      <div class="rule"><h3>In character stays in character</h3><p>IC rivalries and arguments never reflect how players feel about each other.</p></div>
+      <div class="rule"><h3>No metagaming or powergaming</h3><p>Use only what your character would know, and let others react before deciding their outcome.</p></div>
+      <div class="rule"><h3>Rule of cool</h3><p>We follow the general lore of FFXIV, but we pick collaborative fun over lore-policing.</p></div>
+      <div class="rule"><h3>A safe space for all</h3><p>Bullying, harassment, hate speech or toxic behavior means immediate removal.</p></div>
+    </div>
   </section>
 
-  <!-- ===== Join ===== -->
   <section class="cta" id="join">
-    <p class="eyebrow">Interested?</p>
-    <h2>Come find your place with us</h2>
-    <p>If The Kinship sounds like home, send us a message or head straight to the application.</p>
-    <p style="color:var(--gold-soft)"><b>No need to leave your current FC.</b> Join our FC in game, or join in game using just the plugin.</p>
+    <p class="quote">&ldquo;A house of morals and choices, and we never said they had to be good ones.&rdquo;</p>
+    <p>The world cast you out. The Kinship brings you in.</p>
     <div class="btns">
-      <a class="btn primary" id="applyBtn" href="apply.html">Apply to join</a>
-      <a class="btn" id="contactBtn" href="mailto:Thekinship.ffxiv@gmail.com">Contact us</a>
+      <a class="btn primary" href="apply.html">Apply to join</a>
+      <a class="btn" href="mailto:Thekinship.ffxiv@gmail.com">Contact us</a>
     </div>
   </section>
 
@@ -402,57 +386,5 @@
     <a class="back" href="index.html">&larr; Back to home</a>
   </footer>
 </div>
-
-<script>
-// Same published Google Sheet as the home page: used only for the Apply link and contact email
-const FACTION_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAGpMH_xMZvl3V_Pxo-e57S1D9Q2RhjpGxtN2romaYZer0CjAI3qlYzgZa4SUpNZsIbX0Dt3ag6-Jg/pub?gid=0&single=true&output=csv";
-
-function parseCSV(text) {
-  const rows = []; let row = [], cell = "", q = false;
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-    if (q) {
-      if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
-      else if (c === '"') q = false;
-      else cell += c;
-    } else if (c === '"') q = true;
-    else if (c === ",") { row.push(cell); cell = ""; }
-    else if (c === "\n" || c === "\r") {
-      if (c === "\r" && text[i + 1] === "\n") i++;
-      row.push(cell); rows.push(row); row = []; cell = "";
-    } else cell += c;
-  }
-  if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
-  return rows.filter(r => r.some(x => x.trim() !== ""));
-}
-
-const $ = id => document.getElementById(id);
-
-async function main() {
-  try {
-    const res = await fetch(FACTION_URL);
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    const rows = parseCSV(await res.text());
-    const d = {};
-    rows.slice(1).forEach(r => { d[(r[0] || "").trim().toLowerCase()] = (r[1] || "").trim(); });
-
-    if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.contact_email || "")) {
-      $("contactBtn").href = "mailto:" + d.contact_email;
-    }
-  } catch (e) { /* the page still works; Apply stays "coming soon" and Contact still has its default email */ }
-}
-main();
-
-// Enlarge / close the plot graphic
-(function () {
-  const dlg = $("lightbox"), btn = $("plotBtn");
-  if (!dlg || typeof dlg.showModal !== "function") {   // very old browsers: just open the image
-    btn.addEventListener("click", () => window.open("images/plot-example.jpg", "_blank"));
-    return;
-  }
-  btn.addEventListener("click", () => dlg.showModal());
-  dlg.addEventListener("click", () => dlg.close());
-})();
-</script>
 </body>
 </html>
