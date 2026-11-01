@@ -55,7 +55,7 @@
   }
   .nameblock { text-align: center; }
   .nameblock .theme { text-align: center; padding-bottom: 0; margin-top: 4px; }
-  @media (min-width: 761px) { .nameblock { align-self: end; padding-bottom: 6px; } }
+  @media (min-width: 761px) { .nameblock { align-self: stretch; display: flex; flex-direction: column; padding: 64px 0 6px; } .nameblock h1 { margin: auto 0; } }
   .logo {
     width: clamp(170px, 28vw, 280px); aspect-ratio: 1;
     -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
