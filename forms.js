@@ -26,7 +26,7 @@ const WORLDS = {
   "Mana": ["Anima", "Asura", "Chocobo", "Hades", "Ixion", "Masamune", "Pandaemonium", "Titan"],
   "Meteor": ["Belias", "Mandragora", "Ramuh", "Shinryu", "Unicorn", "Valefor", "Yojimbo", "Zeromus"],
 };
-const SECTS = ["Onyx Blood Guard", "Iron Vanguard", "Life Watch", "Ember Court"];
+const SECTS = ["Onyx Blood Guard", "Iron Pack", "Life Watch", "Ember Court"];
 
 const $ = id => document.getElementById(id);
 const opt = (value, label) => { const o = document.createElement("option"); o.value = value; o.textContent = label || value; return o; };
