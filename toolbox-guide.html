@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rafter Cat's RP Toolbox: In-Depth Tab by Tab Guide | The Kinship</title>
+<meta name="description" content="An expansive, in-depth, tab by tab explanation of every feature in Rafter Cat's RP Toolbox, the Kinship's in-game role-play plugin.">
+<style>
+  :root {
+    --bg: #11141b; --panel: #181c26; --edge: #2c3242; --text: #e9e6dc; --muted: #a3a9b8;
+    --gold: #d4a94f; --gold-soft: #f0d58a; --purple: #8b5cf6; --silver: #c4cad6; --steel: #8fa6cf; --green: #4f9d5d; --red: #d9472b;
+    --sects: linear-gradient(90deg, var(--purple), var(--silver), var(--green), var(--red));
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(900px 520px at 0% 0%, rgba(139,92,246,.13), transparent 62%),
+      radial-gradient(900px 520px at 100% 0%, rgba(217,71,43,.10), transparent 62%),
+      radial-gradient(900px 600px at 0% 100%, rgba(79,157,93,.10), transparent 62%),
+      radial-gradient(900px 600px at 100% 100%, rgba(196,202,214,.06), transparent 62%),
+      var(--bg);
+    background-repeat: no-repeat;
+    color: var(--text); font-family: Georgia, "Times New Roman", serif; line-height: 1.7;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 22px 20px 56px; }
+  .back {
+    display: inline-block; text-decoration: none; color: var(--gold-soft); font-size: .9rem; letter-spacing: .06em; padding: 6px 14px;
+    border: 1px solid var(--edge); border-radius: 999px; background: var(--panel);
+  }
+  .back:hover, .back:focus-visible { border-color: var(--gold); box-shadow: 0 0 16px rgba(212,169,79,.25); }
+
+  .banner {
+    position: relative; margin: 14px 0 0; border: 1px solid var(--gold); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(212,169,79,.22), 0 0 38px rgba(212,169,79,.20); background: var(--panel);
+  }
+  .banner::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; z-index: 2; background: linear-gradient(90deg, var(--gold), var(--steel)); }
+  .banner img { width: 100%; height: auto; display: block; }
+  .sect-rule { height: 3px; border-radius: 3px; background: var(--sects); opacity: .85; margin: 18px auto 0; max-width: 760px; }
+
+  .jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 6px; }
+  .jump a {
+    text-decoration: none; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+    padding: 6px 14px; border: 1px solid var(--edge); border-radius: 999px; background: var(--panel);
+  }
+  .jump a:hover, .jump a:focus-visible { color: var(--gold-soft); border-color: var(--gold); }
+
+  section { margin-top: 46px; }
+  .eyebrow { margin: 0; text-align: center; font-size: .78rem; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); }
+  h2 { margin: 4px 0 18px; text-align: center; font-weight: normal; font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--gold-soft); }
+  .lead { max-width: 760px; margin: 0 auto 14px; text-align: center; font-size: 1.12rem; }
+  .lead.muted { color: var(--muted); font-size: 1.02rem; }
+
+  .offer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+  .tile { border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); padding: 22px 20px 20px; position: relative; overflow: hidden; }
+  .tile::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--gold); }
+  .tile:nth-child(3n+2)::before { background: linear-gradient(90deg, var(--gold), var(--purple)); }
+  .tile:nth-child(3n)::before { background: linear-gradient(90deg, var(--gold), var(--green)); }
+  .tile h3 { margin: 0 0 6px; font-weight: normal; font-size: 1.2rem; color: var(--gold-soft); }
+  .tile p { margin: 0; color: var(--muted); }
+
+  .steps { counter-reset: s; display: grid; gap: 14px; max-width: 800px; margin: 22px auto 0; padding: 0; list-style: none; }
+  .steps li { counter-increment: s; position: relative; border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); padding: 14px 18px 14px 62px; }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-soft);
+    display: grid; place-items: center; background: rgba(212,169,79,.08);
+  }
+  .steps b { font-weight: normal; color: var(--gold-soft); }
+
+  .tabs { max-width: 860px; margin: 0 auto; display: grid; gap: 10px; }
+  details.tab { border: 1px solid var(--edge); border-radius: 14px; background: var(--panel); overflow: hidden; }
+  details.tab[open] { border-color: var(--gold); box-shadow: 0 0 22px rgba(212,169,79,.14); }
+  details.tab summary { list-style: none; cursor: pointer; padding: 14px 18px 14px 44px; position: relative; display: block; }
+  details.tab summary::-webkit-details-marker { display: none; }
+  details.tab summary::before { content: "\25B8"; position: absolute; left: 18px; top: 14px; color: var(--gold); transition: transform .15s; }
+  details.tab[open] summary::before { transform: rotate(90deg); }
+  details.tab summary:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: -2px; }
+  .tab .n { display: block; font-size: 1.2rem; color: var(--gold-soft); letter-spacing: .04em; }
+  .tab .d { display: block; color: var(--muted); font-size: .98rem; }
+  .tab .in { padding: 2px 20px 16px 44px; border-top: 1px solid var(--edge); }
+  .tab .in p { margin: 12px 0 0; color: var(--text); }
+  .tab .in ul { margin: 12px 0 0; padding-left: 18px; color: var(--text); }
+  .tab .in li { margin: 6px 0; }
+  .tab .in b { font-weight: normal; color: var(--gold-soft); }
+  .sub-label { text-align: center; margin: 26px 0 12px; font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+
+  .note {
+    max-width: 800px; margin: 22px auto 0; padding: 16px 20px; border: 1px solid var(--gold); border-radius: 14px;
+    background: linear-gradient(180deg, rgba(212,169,79,.10), rgba(24,28,38,.95) 60%), var(--panel);
+    box-shadow: 0 0 24px rgba(212,169,79,.14); text-align: center; color: var(--text);
+  }
+  .note b { font-weight: normal; color: var(--gold-soft); }
+  .faq { max-width: 800px; margin: 0 auto; display: grid; gap: 10px; }
+
+  .cta {
+    margin-top: 48px; text-align: center; padding: 30px 22px 28px; border-radius: 18px;
+    background: linear-gradient(180deg, rgba(212,169,79,.10), rgba(24,28,38,.95) 45%), var(--panel);
+    border: 1px solid var(--gold); box-shadow: 0 0 0 1px rgba(212,169,79,.25), 0 0 38px rgba(212,169,79,.20);
+  }
+  .cta h2 { margin-bottom: 6px; }
+  .cta p { max-width: 560px; margin: 0 auto 18px; color: var(--muted); }
+  .btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .btn {
+    display: inline-block; text-decoration: none; padding: 12px 28px; border-radius: 999px; border: 1px solid var(--gold);
+    color: var(--gold-soft); font-size: 1.02rem; letter-spacing: .05em; background: rgba(212,169,79,.08);
+  }
+  .btn.primary { background: var(--gold); color: #1a1408; }
+  .btn:hover, .btn:focus-visible { box-shadow: 0 0 22px rgba(212,169,79,.4); }
+  footer { text-align: center; padding-top: 28px; color: var(--muted); font-size: .9rem; }
+  @media (max-width: 800px) { .offer { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+  .tabs h3.grp { text-align: center; margin: 30px 0 4px; font-weight: normal; font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+  .tab .in dl { margin: 12px 0 0; }
+  .tab .in dt { color: var(--gold-soft); margin-top: 10px; }
+  .tab .in dd { margin: 2px 0 0 0; color: var(--text); }
+  .tip { margin: 14px 0 0; padding: 10px 14px; border: 1px solid var(--edge); border-left: 3px solid var(--gold); border-radius: 10px; background: rgba(212,169,79,.06); color: var(--text); }
+  .tip b { color: var(--gold-soft); font-weight: normal; }
+  .alpha { color: var(--steel); }
+  .back2 { display:inline-block; margin-left:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="guide.html">&larr; Back to the toolbox</a><a class="back back2" href="index.html">Home</a>
+
+  <div class="banner"><img src="images/toolbox-banner.jpg" alt="Rafter Cat's RP Toolbox: In-depth tab by tab guide"></div>
+  <div class="sect-rule" aria-hidden="true"></div>
+
+  <nav class="jump" aria-label="On this page">
+    <a href="#main">Main window</a><a href="#rp">The RP tab</a><a href="#good">Good to know</a>
+  </nav>
+
+  <section id="intro">
+    <p class="eyebrow">The toolbox</p>
+    <h2>In-depth tab by tab guide</h2>
+    <p class="lead">This page goes through every tab of Rafter Cat's RP Toolbox, what it is for, and how to use each feature. Most of the toolbox is simple enough to figure out as you go. If you get stuck on how something works, or you want a really good look at everything it can do, this is the place.</p>
+    <p class="lead muted">Tap a tab below to open it.</p>
+  </section>
+
+  <section id="main">
+    <p class="eyebrow">The main window</p>
+    <h2>Main window tabs</h2>
+    <p class="lead muted">The tabs along the top of the toolbox.</p>
+    <div class="tabs">
+      <details class="tab" id="home"><summary><span class="n">Home</span><span class="d">The main Free Company window.</span></summary><div class="in"><p>The main window for the Free Company. It shows the logo and some basic information.</p></div></details>
+      <details class="tab" id="about"><summary><span class="n">About</span><span class="d">Everything about our FC.</span></summary><div class="in"><p>All the information about the Free Company.</p></div></details>
+      <details class="tab" id="roster"><summary><span class="n">Roster</span><span class="d">Who is in the Kinship.</span></summary><div class="in"><p>The members of the Kinship. Open a member's card link if they have one, see their basic information, and open the armory view to see what gear they currently have equipped.</p></div></details>
+      <details class="tab" id="announcements"><summary><span class="n">Announcements</span><span class="d">Same as the website.</span></summary><div class="in"><p>The same announcements that are posted on the website.</p></div></details>
+      <details class="tab" id="plots"><summary><span class="n">Plots</span><span class="d">Open story lines you can join.</span></summary><div class="in"><p>When the FC has an open, public RP story line (one that is not attached to a specific sect), the details show here. A small pop-up in game also lets you know there is an active story line, what it is, and how to get involved.</p></div></details>
+      <details class="tab" id="sects"><summary><span class="n">Sects</span><span class="d">Private, members-only pages for each sect.</span></summary><div class="in"><p>Each sect has its own mini home page that is private and for members only. You need the sect password to open it. Inside you will find information and sect-specific tools, such as <b>Read</b> for the Onyx Blood Guard or <b>Diagnose</b> for the Life Watch.</p></div></details>
+      <details class="tab" id="rp"><summary><span class="n">RP</span><span class="d">Items, quests, mail, combat and more.</span></summary><div class="in"><p>The RP tab is its own big section with a row of tabs of its own. That is where most of the toolbox lives, so it has its own guide further down this page.</p></div></details>
+      <details class="tab" id="sm-tools"><summary><span class="n">SM Tools</span><span class="d">Admin tools for the Harbinger and Advocates.</span></summary><div class="in"><p>A suite of tools for the Harbinger and Advocates that works as our admin section. Unless you are an officer, these controls are locked.</p><p>They let SMs step in and change things when needed: statuses can be given or removed, items can be given or taken away, members can be removed or banned, and a profile with an inappropriate link or content can be cleared. This is there to help prevent abuse of the system, such as inappropriate images or hate speech in profiles, god-mod items, handing out debuffs on purpose, or otherwise griefing other players in the FC.</p><p>There is also a way to keep track of <b>marks</b>. Every warning results in a mark, and SMs can see everyone's marks and why they have them. A player who keeps breaking the rules will be removed, but everyone gets a chance. How serious an offence is stays at the SMs' discretion.</p><p>SMs also see a small number on the SM Tools tab, like the one on Mail, when a bug report, abuse report or gold exchange ticket is waiting.</p></div></details>
+      <details class="tab" id="guest"><summary><span class="n">Guest</span><span class="d">For friends who are not in the Kinship.</span></summary><div class="in"><p>Rafter Cat's RP Toolbox was built specifically for The Kinship, but RP is more fun with friends, even ones outside the group. The Guest tab lets people who are not Kinship members take part alongside friends who are.</p><p>You do not need to register. Paste the invite link or code you were given, type a name, and join a combat encounter or a party from the <b>Combat</b> or <b>Party</b> tab inside the Guest tab.</p></div></details>
+      <details class="tab" id="settings"><summary><span class="n">Settings</span><span class="d">The usual switches.</span></summary><div class="in"><p>Self-explanatory: adjust the quest window size and turn things on and off. Typical settings.</p></div></details>
+    </div>
+  </section>
+
+  <section id="rp">
+    <p class="eyebrow">The RP tab</p>
+    <h2>The RP tab, tab by tab</h2>
+    <p class="lead muted">The RP tab has a row of tabs of its own. This is where most of the toolbox lives.</p>
+    <div class="tabs">
+      <details class="tab" id="inventory"><summary><span class="n">Inventory</span><span class="d">Your items, creating items, your name and recovery code.</span></summary><div class="in"><p>Everyone has <b>20 inventory slots</b>, and stackable items share a slot (up to 10 per slot). Press <b>Create item</b> to make an item of your own.</p><h4 style="margin:18px 0 0;font-weight:normal;color:var(--gold-soft)">Creating an item</h4><dl><dt>Choose your icon</dt><dd>Pick an icon from the game.</dd><dt>Name</dt><dd>What the item is called.</dd><dt>Description</dt><dd>Shown in the main body of the item tooltip.</dd><dt>Flavor text</dt><dd>The smaller text at the bottom of the item tooltip.</dd><dt>On use</dt><dd>Only needed if the item does something when used: eat, open, drink and so on. It shows on the item tooltip.</dd><dt>What happens</dt><dd>The text that pops up when the item is used.</dd><dt>Used up when used</dt><dd>After the item is used it vanishes from your inventory, so it works once. Untick it if you want to use the item over and over.</dd><dt>Wearable gear</dt><dd>Lets you make gear (head, neck, rings, boots, cloak and so on) that can be equipped to a character. <b>This is plugin-side only.</b> It has no visual effect and does not change how your character looks in game. However, statuses on wearable items do trigger and show in the status bar, and they affect your RP combat and fights. A cloak with +1 attack automatically adds 1 point of damage to every attack while you have it equipped. When you take it off, or if it breaks, the status goes with it.</dd><dt>Gear slot and Breaks after (days)</dt><dd>Choose the slot. You can give an item durability: 0 means it never breaks, and a number means it breaks after that many days, counted from the first time it is equipped. A broken item returns to your inventory as a "broken item".</dd><dt>Bonuses (+/- attack, +/- heals)</dt><dd>Only SMs can add these (during the alpha test every tester can, for testing). Worn gear is capped at a total of +/-5 across everything you wear, so nobody can build gear that one-shots everything.</dd><dt>Needs this item</dt><dd>Use this when an item needs something else to work. For a locked box that needs a key, type the exact name of the key. The player must have the key in their inventory when they open the box, or it will not open.</dd><dt>Status</dt><dd>When an item is used it can add a status to your character, or remove one. Status changes can take up to 30 seconds to appear, so please be patient. A status can only be added or removed through a use effect, <i>unless</i> you tick <b>Active while carried</b>.</dd><dt>Active while carried</dt><dd>The item does not need a use effect. Its status shows in your status bar for as long as the item is in your main inventory. Give the item away and the status goes with it. Delete it or put it in a stash and the status goes away. Several copies give the status once.</dd><dt>Sickness and curse</dt><dd>Mark a status as a sickness or a curse and add cure information, so a Life Watch or Onyx Blood Guard reading can reveal how to cure it.</dd><dt>Combining</dt><dd>Makes the item a reagent: several parts come together into another item, such as a whole crystal from three shards. When you type in the other reagents an extra option appears.</dd><dt>Set up what it makes</dt><dd>Opens a separate item window where you make the final item. The result then shows in green under the reagents. <b>You cannot add reagents to an item that already exists.</b> You have to create the result while making the reagents.</dd><dt>This combination can fail</dt><dd>Set a percent chance of failure. If it fails, all the reagents are lost and nothing is made.</dd></dl><h4 style="margin:18px 0 0;font-weight:normal;color:var(--gold-soft)">Name and recovery code</h4><p>Open <b>My recovery code</b> at the bottom of the Inventory tab. One code covers all your characters, so write it down. If you play on another computer or reinstall, use it on the RP tab.</p><p><b>Change my name</b> sits just below it. Type a new name and press Change name, which is handy if you registered with only a first name. Your items, gold, statuses and quests stay with you. The name must not be taken by someone else.</p></div></details>
+      <details class="tab" id="armory"><summary><span class="n">Armory</span><span class="d">Equip and view your gear.</span></summary><div class="in"><p>Each gear slot is labeled. Any wearable items in your inventory show here, and you click one to equip it.</p></div></details>
+      <details class="tab" id="profile"><summary><span class="n">Profile</span><span class="d">The card others see when they look at you.</span></summary><div class="in"><dl><dt>Show profiles when I mouse over a character</dt><dd>See the profile of other registered characters.</dd><dt>Also show the profile of my current target</dt><dd>Shows the profile of whoever you have targeted.</dd><dt>Keep the card in one place instead of following the mouse</dt><dd>By default a profile follows the mouse. Tick this to keep it in a set spot.</dd><dt>Move the card / Lock the card</dt><dd>Move brings up a sample card you can drag anywhere on your screen. Lock the card keeps it where it is.</dd><dt>Name shown on your card</dt><dd>The name you want on the profile tooltip. Leave it empty to use your registered name.</dd><dt>Age, Race, Gender</dt><dd>Your character's details.</dd><dt>Fill empty boxes from the roster</dt><dd>Fills the empty boxes automatically from the Roster tab.</dd><dt>Portrait link</dt><dd>Paste the full link to the picture you want shown as your profile picture.</dd><dt>At first glance (IC)</dt><dd>What someone sees when they look at your character. Only physical things they could see, such as "a tired, worn-out person" or "a nervous guy with messy hair".</dd><dt>OOC</dt><dd>Anything out of character, such as whether you accept walk-up RP or are a multigrapher.</dd><dt>Add your own fields</dt><dd>Up to 6 custom fields. Press Add, fill in both parts, for example "Scars: large burn on left arm" or "Alignment: lawful evil".</dd></dl><p>The bottom of the tab previews how your profile looks when another registered character mouses over you.</p></div></details>
+      <details class="tab" id="stashes"><summary><span class="n">Stashes</span><span class="d">Hide items and gold out in the world.</span></summary><div class="in"><dl><dt>Show stash name in the world</dt><dd>Tick it if you want stash names to display in the world.</dd><dt>Make a stash here</dt><dd>The stash is placed wherever you are standing when you make it.</dd><dt>Name the stash</dt><dd>Give it a name.</dd><dt>Private</dt><dd>Only you can see a private stash.</dd></dl><p>Below that you will see your own stashes (no matter where they are), the stashes near you, and how many stashes are out in the world.</p></div></details>
+      <details class="tab" id="signs"><summary><span class="n">Signs</span><span class="d">Leave notes, clues and marks in the world.</span></summary><div class="in"><dl><dt>Show out in the world</dt><dd>Shows signs out in the world.</dd><dt>Make a sign here</dt><dd>Put a sign where you are standing.</dd><dt>Name the sign / Type what it says</dt><dd>Give it a name and the text.</dd><dt>Add gold</dt><dd>Optionally attach gold for whoever finds it.</dd></dl><p>Below that is information on other signs, laid out just like the Stashes tab.</p></div></details>
+      <details class="tab" id="world"><summary><span class="n">World</span><span class="d">Drop items for others to find.</span></summary><div class="in"><p>World items let you leave things around the world, like herbs, reagents, quest-starting items, or anything else for the FC to find. They show up when someone stands next to them.</p><dl><dt>Place a world item here</dt><dd>Puts the item where you are standing.</dd><dt>Item to leave a copy of</dt><dd>Choose the item from the drop-down. Only a copy is left. The original stays with you.</dd><dt>What does it look like</dt><dd>Describe what is seen: an herb, a box, something shiny.</dd><dt>A few words about it</dt><dd>Extra information about it.</dd><dt>How it works</dt><dd>Once (the first person takes it and it is gone), comes back after a wait (you choose the time), or never runs out.</dd></dl><p>Your world drops are listed at the bottom.</p><div class="tip"><b>Only the current zone is loaded.</b> Items in zones nobody is standing in cost the server nothing, so you can hide as many as you like.</div></div></details>
+      <details class="tab" id="status"><summary><span class="n">Status</span><span class="d">Buffs and debuffs on your character.</span></summary><div class="in"><dl><dt>Show my statuses on screen</dt><dd>Tick it to show your statuses in the status bar.</dd><dt>Add a status to myself</dt><dd>Choose an icon, give it a name and a description, and set a timer in minutes (0 means it stays until removed). Tick <b>Debuff</b> if it is a negative effect. Right-click a status of your own to remove it.</dd></dl><p><span class="alpha"><b>Alpha test only:</b></span> characters with a sickness or a magical affliction need to be read or diagnosed to find the cure. Choose your patient and press <b>Diagnose</b> or <b>Read</b>. The plugin makes an internal roll, and if it is high enough (15 or more on a 20-sided roll) a pop-up shows what the status is and how to cure it. During the alpha, you can also give yourself a sickness or curse from this tab, with cure information, so you can try it out.</p></div></details>
+      <details class="tab" id="bank"><summary><span class="n">Bank</span><span class="d">Gold, paying people, and exchanging for gil.</span></summary><div class="in"><dl><dt>Pay someone</dt><dd>Select another player and how much gold to give them.</dd><dt>Exchange gold for gil</dt><dd>The FC offers a gold-to-gil exchange. Plugin gold can be found, given as loot in combat, or earned as quest rewards. You can save it up and, at any time, submit a ticket to exchange it for in-game gil.</dd></dl><p>The ticket is sent right away, but someone with the banker tab and the bank password still has to take the plugin gold from your purse and send you the gil, so it can take a while if nobody is on. The plugin never touches your currency, the FC chest or the FC's funds. A person always has to remove the plugin gold, then send the in-game gil by hand.</p></div></details>
+      <details class="tab" id="mail"><summary><span class="n">Mail</span><span class="d">Letters, parcels and gifts.</span></summary><div class="in"><p>Your mail shows here. <b>Write a mail</b> opens the mail window, where you can write to anyone registered in the system.</p><dl><dt>Choose a member</dt><dd>Pick someone from the drop-down.</dd><dt>Describe the letter or package</dt><dd>Say what it is.</dd><dt>Subject</dt><dd>Give it a subject.</dd><dt>Body</dt><dd>The large text area is the message.</dd><dt>Send anonymously</dt><dd>Tick it and the mail will not show who sent it. To keep it from being abused, SMs can still see who sent a mail.</dd><dt>Attach gold</dt><dd>You can attach an amount of gold.</dd><dt>Attach items</dt><dd>Click an item to attach it. Each mail can have up to 3 attachments.</dd></dl></div></details>
+      <details class="tab" id="quests"><summary><span class="n">Quests</span><span class="d">Playing and making quests.</span></summary><div class="in"><h4 style="margin:6px 0 0;font-weight:normal;color:var(--gold-soft)">Playing a quest</h4><p><b>Speak, Look, Listen and Search</b> are the quest actions you use during an active quest. They also appear in the quest progress window, so you do not need the main window open. Tick <b>Show the quest window on screen while I have a quest</b> to keep that window up.</p><h4 style="margin:18px 0 0;font-weight:normal;color:var(--gold-soft)">Making a quest (for SMs)</h4><dl><dt>Title / Introduction</dt><dd>The quest's name and what it is about.</dd><dt>Starting point</dt><dd>Use this if you want the quest to start automatically when someone walks to a certain spot.</dd><dt>Players can find this quest at a spot in the world</dt><dd>Tick it if you want others to be able to discover the quest.</dd><dt>Use this location</dt><dd>Press the button to use the spot you are standing at.</dd><dt>What a player sees</dt><dd>Describe what the player sees in the area.</dd></dl><p><b>Steps.</b> A quest can have one step or many. Each step works the same way, so here is everything a step can do. <b>Kind</b> is a drop-down:</p><dl><dt>They talk</dt><dd>Talking to an NPC. Type the exact NPC name, what is said, an optional hint, and different lines depending on the character, gender or status.</dd><dt>They give an item</dt><dd>An NPC gives the player an item. You create the item on this step.</dd><dt>Hand over an item</dt><dd>The player must give the NPC an item.</dd><dt>Look at a spot / Listen at a spot / Search a spot</dt><dd>Look, listen or search at a location. These use the location you are standing at.</dd><dt>Walk into an area</dt><dd>The player just has to walk into an area. Choose the spot and a radius.</dd><dt>Fight</dt><dd>Sets up an automatic mini fight that must be won to continue. Choose the enemy (the NPC's name), or pick "Start at this spot instead" if there is no NPC. Then set the enemy's HP, the dice it uses and any bonus. Then set the player's HP, dice and any buffs. Bonuses already on your character before the quest also affect the fight. Write what is said when they win, an optional hint, and an optional reward for winning (an item you create). You can show different text depending on status and gender.</dd><dt>Status</dt><dd>A step can need a status before you continue, or give a status after winning a fight.</dd></dl><p>Keep adding steps until the quest is over.</p><p><b>Area notices</b> are optional notes that are not tied to any step, so they show wherever you are in the quest. They are good for background, like seeing something when you walk into an area. It will always show no matter how far along you are.</p></div></details>
+      <details class="tab" id="jobs"><summary><span class="n">Jobs</span><span class="d">A board of quests the SMs post.</span></summary><div class="in"><p>The Jobs tab is where jobs, tasks and pick-up quests appear. Open the tab, choose a job, and press <b>Take job</b>. The job moves to your own quest log and plays like any other quest.</p><p>SMs choose how each job works: <b>Everyone</b> (every member can take it once, great for events) or <b>First come, first served</b> (whoever takes it has it, and it leaves the board). If you give up a first-come job, it goes back on the board for someone else.</p></div></details>
+      <details class="tab" id="fight"><summary><span class="n">Fight</span><span class="d">A quick one-on-one with another player.</span></summary><div class="in"><p><b>Pick a fight</b> lets you target another registered player and start a very simple back-and-forth battle in a small window. Bonuses from players' statuses apply. If you win you get a buff that says <i>Won a fight</i>. If you lose you get a debuff that says <i>Lost a fight</i>. Each lasts 10 minutes. They have no effect on anything, so losing a fight does not change your bonuses or your combat rolls.</p></div></details>
+      <details class="tab" id="combat"><summary><span class="n">Combat</span><span class="d">Full encounters for story lines, plots and events.</span></summary><div class="in"><p>FC encounters set up for story lines, RP plots and events. It is more involved than a simple Pick a fight or a quest fight.</p><dl><dt>Join an encounter</dt><dd>If you are invited, you will be given a room link. Type your name and the room link or code, and join. A set-up wizard walks you through, and the encounter begins once everything is set and the SM has started it.</dd><dt>Run an encounter (SM only)</dt><dd>During the alpha test anyone can make encounters to help test them. After the alpha only SMs can create encounters.</dd></dl><h4 style="margin:18px 0 0;font-weight:normal;color:var(--gold-soft)">Setting one up</h4><dl><dt>Encounter name / Location / Party notes</dt><dd>Name it, say where it takes place, and add anything the party needs to know.</dd><dt>Encounter type</dt><dd>Classic (players against NPCs), Last one standing (free for all), Spar (1v1, first to fail loses), or Timed (classic with a clock).</dd><dt>Turn order</dt><dd>Random, or choose the order yourself.</dd><dt>The cast</dt><dd>Add the characters. You need to add the player characters <b>as well as</b> the NPCs. For each one, say whether it is an NPC or a player, set the starting HP and max HP, and the order number if you chose manual order.</dd><dt>Details</dt><dd>Anything you want to note about the character.</dd><dt>Loot (optional)</dt><dd>Dropped if and when that character is defeated.</dd><dt>Roll modifiers</dt><dd>Add extra modifiers here. The encounter already reads the status and item bonuses your characters are wearing or have.</dd><dt>Played by</dt><dd>Choose which real player rolls for a cast member. When Player A joins, the SM adds Player A's character to the cast and picks "Played by Player A". For an NPC, choose the SM to roll for it, or pick someone else in the encounter. The choice is yours.</dd></dl><p>Add characters until the encounter is ready, then start it.</p></div></details>
+      <details class="tab" id="party"><summary><span class="n">Party</span><span class="d">Group RP with pop-ups, and a way into a fight.</span></summary><div class="in"><p>A party follows the same idea as combat. To join, use a link or code: enter your name and the code and press <b>Join party</b>. To make one, name the party and press <b>Create party</b>. You get a party code at the top to give to others, and the tab shows who is in the party.</p><dl><dt>Send a popup</dt><dd>Sends a pop-up notification to the whole party or only to the people you pick.</dd><dt>OOC note</dt><dd>A small box for out-of-character notes. It shows in bold inside (( )).</dd><dt>Fill in: encounter started note</dt><dd>Fills in text telling players to wait for you to give them the combat code. There is no button. Use it if you want to hand out the code yourself.</dd><dt>Fill in: encounter started + join button</dt><dd>Fills in the note and adds a <b>Join combat</b> button that carries your combat room's code.</dd></dl><p>This pairs a party with a combat encounter. A patrol, for example, can use the party to tell everyone what they see and hear, and when an ambush happens everyone can join the encounter with one click.</p><div class="tip"><b>Set up first.</b> Your combat room has to be open, filled in and ready to go before you send the join button. Add the NPCs and the player characters ahead of time. When players join, you only need to assign them to the characters you already made ("Played by"), and then start the encounter.</div><div class="tip"><b>Sending a popup:</b> after you press Send popup, give it a moment before pressing it again. A second press sends a second popup.</div></div></details>
+    </div>
+  </section>
+
+  <section id="good">
+    <p class="eyebrow">Good to know</p>
+    <h2>A few things worth knowing</h2>
+    <p class="lead muted"></p>
+    <div class="tabs">
+      <details class="tab" id="be-patient-with-buttons"><summary><span class="n">Be patient with buttons</span><span class="d">Some actions take a little time.</span></summary><div class="in"><p>The toolbox runs on a free server, so some actions (using an item, removing a status, sending mail, a bank exchange) can take up to 30 seconds to go through. Please do not press buttons over and over, and give anything a full minute before you worry. Press Refresh if it still looks the same.</p></div></details>
+      <details class="tab" id="pause-when-you-are-not-rping"><summary><span class="n">Pause when you are not RPing</span><span class="d">Nothing is requested while paused.</span></summary><div class="in"><p>The Active / Paused button at the top of the window turns the toolbox off while you are doing something else, like running quests in the open world. While paused it makes no requests, and world item pop-ups and sign and stash labels do not show.</p></div></details>
+      <details class="tab" id="commands"><summary><span class="n">Commands</span><span class="d">Opening the toolbox.</span></summary><div class="in"><p>Type <b>/rrp</b> or <b>/rptoolbox</b> to open the toolbox. <b>/kinship</b> still works too.</p></div></details>
+      <details class="tab" id="close-your-encounters-and-parties"><summary><span class="n">Close your encounters and parties</span><span class="d">Please tidy up when you are done.</span></summary><div class="in"><p>Close out the encounter and the party when you are finished. Leaving them open keeps using the server and eats into our free data.</p></div></details>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Still stuck?</h2>
+    <p>Ask an SM in the Kinship or tell us in the testers' channel. Spotted something this guide should explain better? Let us know.</p>
+    <div class="btns"><a class="btn primary" href="guide.html">Back to the toolbox</a><a class="btn" href="index.html">Home</a></div>
+  </div>
+
+  <footer>The Kinship &middot; Crystal / Mateus</footer>
+</div>
+</body>
+</html>
