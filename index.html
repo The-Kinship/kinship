@@ -55,6 +55,7 @@
   }
   .nameblock { text-align: center; }
   .nameblock .theme { text-align: center; padding-bottom: 0; margin-top: 4px; }
+  @media (min-width: 761px) { .nameblock { align-self: end; padding-bottom: 6px; } }
   .logo {
     width: clamp(170px, 28vw, 280px); aspect-ratio: 1;
     -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
@@ -268,7 +269,7 @@
   <header class="masthead">
     <div class="nameblock">
       <h1 id="name">The Kinship</h1>
-      <p class="tagline theme">Syndicate Sanctuary themed FC</p>
+      <p class="tagline theme">Syndicate and Sanctuary themed FC</p>
     </div>
     <div class="logo"><img id="logo" src="images/kinship-crest.jpg" alt="The Kinship crest" onerror="this.onerror=null;this.src=DEFAULT_LOGO"></div>
     <p class="tagline" id="tagline"></p>
